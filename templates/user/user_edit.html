@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block styles %}
+    <style>
+        .imgbos {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #0099CC;
+            border-radius: 5px;
+            padding: 3px;
+            text-align: center;
+            display: flex;
+            align-items: center
+        }
+
+        .imgbos img {
+            max-width: 200px;
+            max-height: 200px;
+            margin: auto
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 400px;overflow:auto;">
+        <from class="layui-form">
+            <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <input type="text" class="layui-hide" name="user_list_id" value="{{ user_list.0.user_id }}">
+            {% csrf_token %}{# 随机码 #}
+            <div class="layui-form-item" id="role">
+                <label class="layui-form-label">角色 <i style="color:red">*</i></label>
+                <div class="layui-input-block">
+                    <select name="role" lay-verify="required"
+                            {% if user_list.0.user_name == 'admin' %}disabled="disabled"{% endif %}>
+                        <option value="{{ user_list.0.role_id|safe }}">{{ user_list.0.role_name|safe }}</option>
+                        {% for i in role_list.data %}
+                            {% if i.role_id != user_list.0.role_id and user_list.0.user_name != 'admin' %}
+                                <option value="{{ i.role_id }}">{{ i.role_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名称 <i style="color:red">*</i></label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_full_name" lay-verify="required|user_name"
+                           placeholder="请输入名称" value="{{ user_list.0.user_full_name|safe }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号 <i style="color:red">*</i></label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_name" lay-verify="required|user_name" placeholder="请输入账号"
+                           value="{{ user_list.0.user_name|safe }}"
+                           class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_email" lay-verify="email" placeholder="请输入邮箱"
+                           value="{{ user_list.0.user_email }}"
+                           class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="user_sex" value="1" title="男"
+                           checked="{% if user_list.0.user_sex == 1 %}checked{% endif %}">
+                    <input type="radio" name="user_sex" value="0" title="女"
+                           {% if user_list.0.user_sex == 0 %}checked{% endif %}>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">身份证 <i style="color:red">*</i></label>
+                <div class="layui-input-block">
+                    <input id="user_card" type="text" name="user_card" lay-verify="required|identity"
+                           placeholder="请输入身份证" value="{{ user_list.0.user_card }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                    <input id="user_age" type="number" name="user_age" lay-verify="required" placeholder="请输入年龄"
+                           disabled="disabled"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话号码 <i style="color:red">*</i></label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_phone_number" lay-verify="required|phone"
+                           value="{{ user_list.0.user_phone_number }}"
+                           placeholder="请输入电话号码"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有效</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="is_active" value="1" title="是"
+                           checked="{% if user_list.0.is_active == '1' %}checked{% endif %}">
+                    <input type="radio" name="is_active" value="0" title="否"
+                           {% if user_list.0.is_active == '0' %}checked{% endif %}>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-hide">
+                <label class="layui-form-label">创建人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="createby" lay-verify="required" placeholder="" value="{{ login_user }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <label class="layui-form-label">更新人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="updateby" lay-verify="" placeholder="" value=""
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" id="upload">
+                        <i class="layui-icon">&#xe67c;</i>上传头像
+                    </button>
+                    <br><br>
+                    <div class="imgbos">
+                        <img {% if user_list.0.img_url %}src="media/{{ user_list.0.img_url|safe }}"{% endif %}
+                             id="preview" title="">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit onclick="" id="commit" lay-filter="*">立即提交</button>
+                </div>
+            </div>
+        </from>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+
+    <script>
+        var year = new Date().getFullYear(); //当前年
+        var age = year - $("#user_card").val().substring(6, 10) //初始年龄没有就是当前年
+        //初始化年龄
+        if (age != year) {
+            $("#user_age").val(age)
+        }
+        //年龄自动生成
+        $("#user_card").blur(
+            function () {
+                age = year - $("#user_card").val().substring(6, 10);
+                if (age != year) {
+                    $("#user_age").val(age)
+                }
+            });
+        //layui
+        layui.use(['layer', 'form', 'upload'], function (data) {
+            var layer = layui.layer;
+            var form = layui.form;
+            var upload = layui.upload;
+            var $ = layui.jquery;
+            form.render();//表单渲染
+            //表单验证
+            form.verify({
+                user_name: function (value, item) { //value：表单的值、item：表单的DOM对象
+                    if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                        return '用户名不能有特殊字符';
+                    }
+                    if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                        return '用户名首尾不能出现下划线\'_\'';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '用户名不能全为数字';
+                    }
+                }, user_password: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+            });
+            //表单提交
+            form.on('submit(*)', function (data) {
+                var $ = layui.jquery;
+                if (!$('#preview').attr('src') || $('#preview').attr('src') === 'media/{{ user_list.0.img_url }}') {
+                    console.log(1)
+                    //渲染浏览记录
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ ff_path }}",
+                        data: data.field,
+                        dataType: "json",
+                        success: function (data) {
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                            parent.layui.table.reload('user_list');
+                            var infos = '{{ login_user }}';
+
+                            if (infos) {
+                                parent.layer.msg(
+                                    '修改成功'
+                                    , {
+                                        time: 3000, //3秒自动关闭
+                                        end: function () {
+                                            parent.layui.table.reload('user_list');
+                                        }
+                                    });
+                            } else {
+                                parent.layer.msg(
+                                    '新增成功'
+                                    , {
+                                        time: 3000, //3秒自动关闭
+                                        end: function () {
+                                            parent.layui.table.reload('user_list');
+                                        }
+                                    });
+                            }
+
+
+                        }, error: function (data) {
+
+                        }
+                    });
+                    return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                }
+            });
+            //upload渲染
+            upload.render({
+                elem: '#upload', //上传头像
+                field: 'image',
+                url: '{{ ff_path }}',
+                auto: false,//选择文件后不自动上传
+                bindAction: '#commit', //提交按钮
+                size: 20000, //文件大小
+                //上传前的回调
+                before: function (obj) {
+                    this.data = {
+                        //提交参数
+                        user_list_id: $('input[name="user_list_id"]').val(),
+                        role: $(".layui-unselect dd[class='layui-this']").attr('lay-value'),
+                        user_full_name: $('input[name="user_full_name"]').val(),
+                        user_name: $('input[name="user_name"]').val(),
+                        user_password: $('input[name="user_password"]').val(),
+                        user_email: $('input[name="user_email"]').val(),
+                        user_sex: $('input[name="user_sex"]').val(),
+                        user_card: $('input[name="user_card"]').val(),
+                        user_phone_number: $('input[name="user_phone_number"]').val(),
+                        is_active: $('input[name="is_active"]').val(),
+                        createby: $('input[name="createby"]').val(),
+                        updateby: $('input[name="updateby"]').val(),
+                        csrfmiddlewaretoken: '{{ csrf_token  }}' //异步提交随机代码
+                    }
+                },
+                //选择文件后的回调
+                choose: function (obj) {
+                    obj.preview(function (index, file, result) {
+                        //生成uuid方法
+                        function uuidGenerator() {
+                            var originStr = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                                originChar = '0123456789abcdef',
+                                len = originChar.length;
+                            return originStr.replace(/x/g, function (match) {
+                                return originChar.charAt(Math.floor(Math.random() * len))
+                            })
+                        }
+
+                        obj.resetFile(index, file, '' + uuidGenerator() + '.jpg'); //图片重命名
+                        $('#preview').attr('src', result); //显示上传的图片
+                        $('#preview').attr('title', file.name); //鼠标悬停title
+                    })
+                },
+                //操作成功的回调
+                done: function (res, index, upload) {
+                    var code = res.code === 0 ? 2 : 1;
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                    parent.layui.table.reload('user_list');
+                    parent.layer.msg('新增用户成功', {
+                        time: 3000, //3秒自动关闭
+                        end: function () {
+                            parent.layui.table.reload('user_list');
+
+                        }
+                    })
+                },
+                //上传错误回调
+                error: function (res, index, upload) {
+                    layer.alert('上传失败！' + res);
+                }
+            });
+
+        });
+
+
+    </script>
+{% endblock %}

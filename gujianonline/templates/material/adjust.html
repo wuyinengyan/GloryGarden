@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:20px 20px 0px 0px; overflow:auto;">
+        <from class="layui-form">
+            <input type="text" class="layui-hide" id="ids" name="ids" value="">
+            {% csrf_token %}{# 随机码 #}
+            <div class="layui-form-item">
+                <label class="layui-form-label">字&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段：</label>
+                <div class="layui-input-block">
+                    <select id="field" name="field" lay-filter="field">
+                        <option value="type_id">类型</option>
+                        <option value="role_id">角色</option>
+                        <option value="priority">优先级</option>
+                        <option value="version_id">版本</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">目&nbsp;标&nbsp;&nbsp;值：</label>
+                <div class="layui-input-block">
+                    <select id="value" name="value" lay-filter="value">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit onclick="" id="save" lay-filter="save">保存</button>
+                </div>
+            </div>
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const table_id = 'gjol_material_table';
+
+        layui.use(['layer', 'table', 'form', 'upload'], function (data) {
+            let layer = layui.layer, table = layui.table, form = layui.form, upload = layui.upload;
+
+            get_values_by_field("type_id");  // 默认初始值
+
+            form.render();
+            form_on_submit('{{path}}', table_id);
+
+            // 选择字段
+            form.on('select(field)', function (data){
+                get_values_by_field(data.value);
+            });
+        });
+
+        // 根据字段获取下拉列表
+        function get_values_by_field(val){
+            $.ajax({
+                type: "GET",
+                url: "gjol_material_adjust",
+                data: "field=" + val,
+                success: function (res) {
+                    if(res.status){
+                        $("#value").empty();
+                        // $("#value").append(new Option("", ""));  // 添加空元素
+                        $.each(res.data, function (index, item) {
+                            $("#value").append(new Option(item.name, item.id));
+                        })
+                        layui.form.render("select");  // 重现渲染 固定写法
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        };
+    </script>
+{% endblock %}

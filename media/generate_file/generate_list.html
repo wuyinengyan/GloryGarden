@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <!-- 内容主体区域 -->
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        代码测试
+                    </div>
+                    <div class="layui-card-body">
+                        <table id="table" lay-filter="table"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;      /*表格*/
+            /*table实例*/
+            table.render({
+                elem: '#table'
+                , height: 500
+                , url: '{{ path }}/generate_data' /*数据接口*/
+                , page: true /*开启分页*/
+                , toolbar: '<div class="layui-table-tool-temp">' +
+                                '{% if generate_button_rights.role_create_rights == 'false' %}{% else %}<div class="layui-inline" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>{% endif %}' +
+                                '</div>' /*默认操作行*/
+                , loading: true /*加载条*/
+                , cols: [[
+                    {checkbox: true, sort: true, fixed: 'left'}
+                    , {title: '序号', type: 'numbers', sort: true, fixed: 'left', width: 70,}
+                    , {field: 'generate_id', title: 'id', width: 100, sort: true, fixed: 'left'}
+                    , {field: 'name', title: '名称', width: 400}
+                    , {
+                        fixed: 'right',
+                        title: '操作',
+                        width: 300,
+                        align: 'center',
+                        templet: function (d) {
+                            return '  {% if generate_button_rights.role_select_rights == 'true' %}<a class="layui-btn layui-btn-xs" lay-event="info">查看</a>{% endif %}{% if generate_button_rights.role_update_rights == 'true' %}  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>{% endif %}\n' +
+                                ' {% if generate_button_rights.role_delete_rights == 'true' %} <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>{% endif %}'
+                        }
+                    }
+
+                ]]
+            });
+            {#监听头部新增事件#}
+            table.on('tool(table)', function (obj) {
+                var data = obj.data; /*获得当前行数据*/
+                var layEvent = obj.event; /*获得 lay-event 对应的值*/
+                var tr = obj.tr; /*获得当前行 tr 的DOM对象*/
+                var title = ''  /*弹出框标题*/
+                var area = ''   /*弹出框大小*/
+                var btn = ''
+                if (layEvent === 'info') {
+                    title = '查看'
+                    area = ['500px', '520px']
+                } else if (layEvent === 'edit') {
+                    title = '编辑'
+                    area = ['500px', '520px']
+                    btn = ['确认', '取消']
+                } else if (layEvent === 'del') {
+                    title = '删除'
+                    area = ['350px', '220px']
+                    btn = ['确认', '取消']
+                }
+                //弹出框
+                layer.open({
+                    btn: btn,
+                    btn1: function (index, layero) {
+
+                    },
+                    btn2: function (index, layero) {
+                    },
+                    title: title,
+                    id: "generate_list_operation",
+                    anim: 4, /*从左翻滚*/
+                    btnAlign: 'c', /*按钮居中*/
+                    type: 2, /*类型iframe*/
+                    resize: true,
+                    moveOut: true,
+
+                    scrollbar: true,
+                    shadeClose: true, /*点击遮罩关闭层*/
+                    area: area,
+                    content: '{{ path }}/generate_' + layEvent + '?generate_list_id=' + data.generate_id + ''
+                });
+
+            });
+        })
+    </script>
+{% endblock %}

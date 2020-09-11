@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:20px 20px 0px 0px;overflow:auto;">
+        <from class="layui-form">
+            <input type="text" class="layui-hide" name="id" value="{{ material_type_list.0.id }}">
+            {% csrf_token %}
+            <div class="layui-form-item">
+                <label class="layui-form-label"><i style="color:red; font-weight:bold"> * </i>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+                <div class="layui-input-block">
+                    <input type="text" id="name" name="name" value="{{ material_type_list.0.name|safe }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label>
+                <div class="layui-input-block">
+                    <input type="text" id="sort" name="sort"  value="{{ material_type_list.0.sort|safe }}"
+                     class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+                <div class="layui-input-block">
+                    <textarea type="text" id="remark" name="remark" class="layui-input"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit onclick="" id="save" lay-filter="save">保存</button>
+                </div>
+            </div>
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const table_id = 'gjol_material_type_table';
+
+        layui.use(['layer', 'table', 'form', 'upload'], function (data) {
+            let layer = layui.layer, table = layui.table, form = layui.form, upload = layui.upload;
+
+            $("#remark").val("{{ material_type_list.0.remark }}");
+
+            form.render();
+            form_on_submit('{{path}}', table_id);
+        });
+    </script>
+{% endblock %}

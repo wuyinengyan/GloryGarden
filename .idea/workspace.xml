@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="449d2c66-9f9d-45e0-b146-1a3076670c4f" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/venv/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/GloryGarden$manage.coverage" NAME="manage Coverage Results" MODIFIED="1599733409833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hRoot$manage.coverage" NAME="manage Coverage Results" MODIFIED="1596620313557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="hRoot" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/templates/role/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/views/v_material.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="6" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods/recipe.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="189" column="53" selection-start-line="189" selection-start-column="53" selection-end-line="189" selection-end-column="53" />
+              <folding>
+                <element signature="e#296#1759#0#HTML" />
+                <element signature="e#342#491#0#HTML" />
+                <element signature="e#508#974#0#HTML" />
+                <element signature="e#991#1428#0#HTML" />
+                <element signature="e#1445#1740#0#HTML" />
+                <element signature="e#1772#3235#0#HTML" />
+                <element signature="e#1818#1967#0#HTML" />
+                <element signature="e#2062#2101#0#HTML" expanded="true" />
+                <element signature="e#2467#2904#0#HTML" />
+                <element signature="e#2921#3216#0#HTML" />
+                <element signature="e#3248#4702#0#HTML" />
+                <element signature="e#3294#3443#0#HTML" />
+                <element signature="e#3538#3577#0#HTML" expanded="true" />
+                <element signature="e#4021#4047#0#HTML" expanded="true" />
+                <element signature="e#4475#4513#0#HTML" expanded="true" />
+                <element signature="e#8598#9073#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1387">
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/views/v_goods_type.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1368">
+              <caret line="72" column="22" selection-start-line="72" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/views/v_material_type.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="798">
+              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gujianonline/templates/material/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1862">
+              <caret line="98" column="97" selection-start-line="98" selection-start-column="97" selection-end-line="101" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>gjol_material_import</find>
+      <find>fakepath</find>
+      <find>name</find>
+      <find>value</find>
+      <find>layui-input-inline</find>
+      <find>layui-input-block</find>
+      <find>goods</find>
+      <find>GJOL_Material_Type</find>
+      <find>182</find>
+      <find>input</find>
+      <find>padding</find>
+      <find>lhj</find>
+      <find>GJOL_Material</find>
+      <find>材料</find>
+      <find>material</find>
+      <find>type1</find>
+      <find>amount1</find>
+      <find>split</find>
+      <find>PosIntOrNull</find>
+      <find>bulk_create</find>
+      <find>content</find>
+      <find>component_id</find>
+      <find>300</find>
+      <find>1</find>
+      <find>data</find>
+      <find>value1</find>
+      <find>replace</find>
+      <find>4</find>
+      <find>select</find>
+      <find>2</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>session</replace>
+      <replace>menu_my</replace>
+      <replace>@csrf_protect</replace>
+      <replace>400</replace>
+      <replace>@log_inr</replace>
+      <replace>{% load static  %}</replace>
+      <replace>&quot;</replace>
+      <replace>table_prefix</replace>
+      <replace>stock_info</replace>
+      <replace>material_info.0</replace>
+      <replace>profession</replace>
+      <replace>server_info</replace>
+      <replace>account_info</replace>
+      <replace>role</replace>
+      <replace>layui-input-block</replace>
+      <replace>material</replace>
+      <replace>GJOL_Goods_Type</replace>
+      <replace>GJOL_Goods</replace>
+      <replace>商品</replace>
+      <replace>goods</replace>
+      <replace>4</replace>
+      <replace>2</replace>
+      <replace>5</replace>
+      <replace>3</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="C:/ProgramData/Anaconda3/Lib/site-packages/django/db/backends/mysql/base.py" />
+        <option value="$PROJECT_DIR$/sysmanage/models.py" />
+        <option value="$PROJECT_DIR$/hRootEl/settings.py" />
+        <option value="$PROJECT_DIR$/hRootEl/urls.py" />
+        <option value="$PROJECT_DIR$/loginmanage/views.py" />
+        <option value="$PROJECT_DIR$/sysmanage/urls.py" />
+        <option value="$PROJECT_DIR$/GloryGarden/urls.py" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/version/hi.html" />
+        <option value="$PROJECT_DIR$/sysmanage/views.py" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/version/test.html" />
+        <option value="$PROJECT_DIR$/templates/menu/menu_list.html" />
+        <option value="$PROJECT_DIR$/templates/user/user_list.html" />
+        <option value="$PROJECT_DIR$/static/lhj/lay_table_event.js" />
+        <option value="$PROJECT_DIR$/static/lhj/layer_open_event.js" />
+        <option value="$PROJECT_DIR$/static/lhj/from_file_import_data.js" />
+        <option value="$PROJECT_DIR$/templates/sublime_test.html" />
+        <option value="$PROJECT_DIR$/gujianonline/views_all/v_role.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_version.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_role.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views_base.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/loginmanage/urls.py" />
+        <option value="$PROJECT_DIR$/GloryGarden/settings.py" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/static/adds/ajaxfileupload.js" />
+        <option value="$PROJECT_DIR$/static/lhj/upload_file_import_data.js" />
+        <option value="$PROJECT_DIR$/static/lhj/list_html_common_function.js" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/role/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/version/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/version/edit.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/role/edit.html" />
+        <option value="$PROJECT_DIR$/static/lhj/edit_html_common_function.js" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/material/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/material/edit.html" />
+        <option value="$PROJECT_DIR$/static/css/layui.css" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/goods/edit.html" />
+        <option value="$PROJECT_DIR$/gujianonline/urls.py" />
+        <option value="$PROJECT_DIR$/templates/login/login.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/material/adjust.html" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_goods_type.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_material_type.py" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/goods_type/edit.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/material_type/edit.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/material_type/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/goods_type/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/models.py" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/goods/list.html" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_material.py" />
+        <option value="$PROJECT_DIR$/gujianonline/views/v_goods.py" />
+        <option value="$PROJECT_DIR$/gujianonline/templates/goods/recipe.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="309" />
+    <option name="y" value="23" />
+    <option name="width" value="1030" />
+    <option name="height" value="680" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="lhj" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GloryGarden" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GloryGarden" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DeptDataTool" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PycharmProjects\GloryGarden\static\adds" />
+      <recent name="E:\PycharmProjects\GloryGarden\static" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\templates" />
+      <recent name="E:\PycharmProjects\GloryGarden\templates" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\templates\goods" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\templates\goods_type" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\views" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\templates\material" />
+      <recent name="E:\PycharmProjects\GloryGarden\gujianonline\templates\role" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="GloryGarden" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hRootEl" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="GloryGarden" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="449d2c66-9f9d-45e0-b146-1a3076670c4f" name="Default Changelist" comment="" />
+      <created>1559989509142</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559989509142</updated>
+      <workItem from="1559989510285" duration="6388000" />
+      <workItem from="1559999104318" duration="10897000" />
+      <workItem from="1560049924000" duration="216000" />
+      <workItem from="1560306201527" duration="53930000" />
+      <workItem from="1560768770720" duration="1500000" />
+      <workItem from="1560774428653" duration="19956000" />
+      <workItem from="1560915844580" duration="10399000" />
+      <workItem from="1560998655943" duration="24164000" />
+      <workItem from="1561348261210" duration="33206000" />
+      <workItem from="1561533715775" duration="22018000" />
+      <workItem from="1561694063192" duration="237000" />
+      <workItem from="1561694441675" duration="52049000" />
+      <workItem from="1562410044362" duration="753000" />
+      <workItem from="1562553559698" duration="646000" />
+      <workItem from="1563180979922" duration="1148000" />
+      <workItem from="1563447780887" duration="605000" />
+      <workItem from="1563522987468" duration="8000" />
+      <workItem from="1563850753540" duration="318000" />
+      <workItem from="1564127949318" duration="290000" />
+      <workItem from="1565690216075" duration="22303000" />
+      <workItem from="1565758695446" duration="4684000" />
+      <workItem from="1565772673680" duration="1521000" />
+      <workItem from="1565774296873" duration="16285000" />
+      <workItem from="1565836803039" duration="25388000" />
+      <workItem from="1565923072497" duration="28490000" />
+      <workItem from="1566223615739" duration="8615000" />
+      <workItem from="1576572961303" duration="2752000" />
+      <workItem from="1596527239851" duration="1496000" />
+      <workItem from="1596529897857" duration="1662000" />
+      <workItem from="1596531937031" duration="2246000" />
+      <workItem from="1596544691357" duration="876000" />
+      <workItem from="1596546230386" duration="1712000" />
+      <workItem from="1596548427090" duration="2134000" />
+      <workItem from="1596598930639" duration="6671000" />
+      <workItem from="1596701634978" duration="140000" />
+      <workItem from="1596704245573" duration="1937000" />
+      <workItem from="1596782421502" duration="1910000" />
+      <workItem from="1596785152182" duration="624000" />
+      <workItem from="1596788234481" duration="2703000" />
+      <workItem from="1597043879426" duration="3719000" />
+      <workItem from="1597112144748" duration="19778000" />
+      <workItem from="1597503078238" duration="736000" />
+      <workItem from="1597649186764" duration="10080000" />
+      <workItem from="1597671616625" duration="4325000" />
+      <workItem from="1597710159921" duration="7943000" />
+      <workItem from="1597722128907" duration="4085000" />
+      <workItem from="1597739386117" duration="4424000" />
+      <workItem from="1597797697263" duration="8641000" />
+      <workItem from="1597828907847" duration="305000" />
+      <workItem from="1597829551119" duration="476000" />
+      <workItem from="1597830068503" duration="503000" />
+      <workItem from="1597885962855" duration="8012000" />
+      <workItem from="1597896323223" duration="2521000" />
+      <workItem from="1597909435793" duration="6023000" />
+      <workItem from="1597970706267" duration="11367000" />
+      <workItem from="1598150193261" duration="594000" />
+      <workItem from="1598342166068" duration="4739000" />
+      <workItem from="1598410392577" duration="628000" />
+      <workItem from="1598490154756" duration="6917000" />
+      <workItem from="1598519228337" duration="3530000" />
+      <workItem from="1598580711334" duration="10080000" />
+      <workItem from="1598601753052" duration="6419000" />
+      <workItem from="1598833794629" duration="2699000" />
+      <workItem from="1598838526226" duration="10719000" />
+      <workItem from="1598928611325" duration="11423000" />
+      <workItem from="1598965300768" duration="3029000" />
+      <workItem from="1599006531483" duration="1769000" />
+      <workItem from="1599031336211" duration="3597000" />
+      <workItem from="1599036637285" duration="3520000" />
+      <workItem from="1599092809014" duration="6325000" />
+      <workItem from="1599104859812" duration="262000" />
+      <workItem from="1599105129083" duration="805000" />
+      <workItem from="1599105951517" duration="6326000" />
+      <workItem from="1599125753079" duration="2324000" />
+      <workItem from="1599407225473" duration="801000" />
+      <workItem from="1599440125112" duration="7729000" />
+      <workItem from="1599527237477" duration="2956000" />
+      <workItem from="1599534320460" duration="16671000" />
+      <workItem from="1599572997208" duration="4039000" />
+      <workItem from="1599613448451" duration="13875000" />
+      <workItem from="1599629389992" duration="10432000" />
+      <workItem from="1599657271381" duration="594000" />
+      <workItem from="1599711477085" duration="4413000" />
+      <workItem from="1599729302419" duration="1088000" />
+      <workItem from="1599733161913" duration="1818000" />
+    </task>
+    <task id="LOCAL-00001" summary="更新历史窗口文字太长导致样式错乱的问题">
+      <created>1560000183440</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560000183440</updated>
+    </task>
+    <task id="LOCAL-00002" summary="提交-首页新加当前时间（60秒自动刷新）">
+      <created>1560004025981</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560004025981</updated>
+    </task>
+    <task id="LOCAL-00003" summary="提交-角色的增删改查按钮树文件改名&#10;提交-新增菜单管理左边树相关html文件">
+      <created>1560007441238</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560007441238</updated>
+    </task>
+    <task id="LOCAL-00004" summary="提交-实现菜单管理左边树相关代码">
+      <created>1560009893353</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560009893353</updated>
+    </task>
+    <task id="LOCAL-00005" summary="提交-删除多余树html模版（通用模版设置成ztree.html）">
+      <created>1560047817341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560047817341</updated>
+    </task>
+    <task id="LOCAL-00006" summary="提交-登录换成了session存储用户信息">
+      <created>1560049011687</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560049011687</updated>
+    </task>
+    <task id="LOCAL-00007" summary="idea 工作日志">
+      <created>1560052179990</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560052179990</updated>
+    </task>
+    <task id="LOCAL-00008" summary="提交-小更新">
+      <created>1560098087455</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560098087455</updated>
+    </task>
+    <task id="LOCAL-00009" summary="提交-新加菜单管理查看按钮页面">
+      <created>1560307519215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560307519215</updated>
+    </task>
+    <task id="LOCAL-00010" summary="提交-新加菜单管理编辑按钮页面">
+      <created>1560329413271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560329413271</updated>
+    </task>
+    <task id="LOCAL-00011" summary="提交-新加菜单父级树选择功能">
+      <created>1560398757357</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560398757357</updated>
+    </task>
+    <task id="LOCAL-00012" summary="提交-菜单管理新增编辑按钮功能完善">
+      <created>1560501081384</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560501081385</updated>
+    </task>
+    <task id="LOCAL-00013" summary="提交-修改登录session">
+      <created>1560774215169</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560774215169</updated>
+    </task>
+    <task id="LOCAL-00014" summary="提交-左侧菜单树添加传入ifarme_id功能&#10;提交-菜单管理按钮权限功能">
+      <created>1560846085137</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560846085137</updated>
+    </task>
+    <task id="LOCAL-00015" summary="提交-角色管理列表高宽调整，权限保存关闭弹框">
+      <created>1560913028684</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560913028684</updated>
+    </task>
+    <task id="LOCAL-00016" summary="提交-加大首页ifarme高度，提交-新增用户加图片上传功能，提交-数据库用户id改成UUID">
+      <created>1561086569458</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1561086569458</updated>
+    </task>
+    <task id="LOCAL-00017" summary="提交-图片">
+      <created>1561086676635</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1561086676635</updated>
+    </task>
+    <task id="LOCAL-00018" summary="提交-用户新增功能（待优化）">
+      <created>1561376013953</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1561376013954</updated>
+    </task>
+    <task id="LOCAL-00019" summary="提交-新增用户管理编辑功能，优化新增功能">
+      <created>1561533324022</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1561533324023</updated>
+    </task>
+    <task id="LOCAL-00020" summary="提交-登录界面css优化">
+      <created>1561552714745</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1561552714745</updated>
+    </task>
+    <task id="LOCAL-00021" summary="提交-登录界面优化">
+      <created>1561552780553</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1561552780553</updated>
+    </task>
+    <task id="LOCAL-00022" summary="提交-更改base.html 的title标签">
+      <created>1561554564018</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1561554564018</updated>
+    </task>
+    <task id="LOCAL-00023" summary="提交-框架名称提交">
+      <created>1561554692682</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1561554692682</updated>
+    </task>
+    <task id="LOCAL-00024" summary="提交-整理静态文件，提交-新增代码高亮test测试">
+      <created>1561623103030</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1561623103030</updated>
+    </task>
+    <task id="LOCAL-00025" summary="提交-修改用户管理存在的bug">
+      <created>1561718196870</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1561718196870</updated>
+    </task>
+    <task id="LOCAL-00026" summary="提交-代码生成器（普通列表）还需优化">
+      <created>1561733038593</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1561733038593</updated>
+    </task>
+    <task id="LOCAL-00027" summary="提交-简化代码封装登录验证@log_in装饰器,static/data新增insert_data文件可直接在生成的表结构倒入默认数据">
+      <created>1565698405254</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1565698405254</updated>
+    </task>
+    <task id="LOCAL-00028" summary="提交-删除之前的自定义登录验证工具">
+      <created>1565698560926</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1565698560926</updated>
+    </task>
+    <task id="LOCAL-00029" summary="提交-修改无方法bug">
+      <created>1565698656473</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1565698656473</updated>
+    </task>
+    <task id="LOCAL-00030" summary="提交-新增运行项目步骤图片">
+      <created>1565760164227</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1565760164227</updated>
+    </task>
+    <task id="LOCAL-00031" summary="提交-菜单list、角色list、登录管理list分页、修复list页面筛选列报错、用户管理修改详情页面链接，新增删除功能">
+      <created>1565785419032</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1565785419034</updated>
+    </task>
+    <task id="LOCAL-00032" summary="提交-增加日志功能，后台输出用户操作方法，logs文件夹下存放备份日志，增加404页面（部署后才能用）">
+      <created>1565838070504</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1565838070505</updated>
+    </task>
+    <task id="LOCAL-00033" summary="提交-删除多余代码">
+      <created>1565840031539</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1565840031539</updated>
+    </task>
+    <task id="LOCAL-00034" summary="提交-修改readme">
+      <created>1565840126897</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1565840126897</updated>
+    </task>
+    <task id="LOCAL-00035" summary="提交-更新readme">
+      <created>1565844382931</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1565844382931</updated>
+    </task>
+    <task id="LOCAL-00036" summary="提交-新增展示图片">
+      <created>1565844949981</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1565844949981</updated>
+    </task>
+    <task id="LOCAL-00037" summary="提交-新增展示图片">
+      <created>1565845012453</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1565845012453</updated>
+    </task>
+    <task id="LOCAL-00038" summary="提交-新增展示图片">
+      <created>1565845360924</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1565845360924</updated>
+    </task>
+    <task id="LOCAL-00039" summary="提交-新增展示图片">
+      <created>1565845509096</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1565845509096</updated>
+    </task>
+    <task id="LOCAL-00040" summary="提交-修改数据库文件，修改readme">
+      <created>1565846867889</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1565846867889</updated>
+    </task>
+    <task id="LOCAL-00041" summary="提交-修改readme，增加操作代码表格">
+      <created>1565847480018</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1565847480018</updated>
+    </task>
+    <task id="LOCAL-00042" summary="提交-菜单管理新增编辑可以选择icon，系统工具加icon列表">
+      <created>1565875707528</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1565875707528</updated>
+    </task>
+    <task id="LOCAL-00043" summary="提交-数据库文件更新">
+      <created>1565876182322</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1565876182322</updated>
+    </task>
+    <task id="LOCAL-00044" summary="提交-role模块和user模块bug修复">
+      <created>1565930049792</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1565930049792</updated>
+    </task>
+    <task id="LOCAL-00045" summary="提交-优化代码质量，首页新增动态头像显示，个人资料弹框，优化urls顺序">
+      <created>1565972274996</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1565972274997</updated>
+    </task>
+    <task id="LOCAL-00046" summary="提交-优化代码质量,登录页错误提示">
+      <created>1565973948482</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1565973948482</updated>
+    </task>
+    <task id="LOCAL-00047" summary="提交-修改密码">
+      <created>1566290883915</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1566290883915</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="638329000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.22330096" />
+      <window_info id="Favorites" order="1" sideWeight="0.50089765" side_tool="true" weight="0.16666667" />
+      <window_info id="Structure" order="2" sideWeight="0.50089765" weight="0.22734627" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4985694" weight="0.32763976" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.490701" weight="0.2826087" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4792561" weight="0.318323" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928468" weight="0.32763976" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49785408" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.48786408" side_tool="true" weight="0.38664597" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.5121359" weight="0.318323" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" weight="0.32763976" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32928804" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.22411004" />
+      <window_info id="Favorites" order="1" sideWeight="0.50089765" side_tool="true" weight="0.16666667" />
+      <window_info id="Structure" order="2" sideWeight="0.50089765" weight="0.2274678" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4985694" weight="0.32763976" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.490701" weight="0.1863354" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4792561" weight="0.26086956" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928468" weight="0.32763976" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49785408" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.48786408" side_tool="true" weight="0.38664597" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.5121359" weight="0.318323" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49928468" weight="0.32763976" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32928804" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/jquery" />
+    </ignored-roots>
+    <MESSAGE value="提交-登录界面css优化" />
+    <MESSAGE value="提交-登录界面优化" />
+    <MESSAGE value="提交-更改base.html 的title标签" />
+    <MESSAGE value="提交-框架名称提交" />
+    <MESSAGE value="提交-整理静态文件，提交-新增代码高亮test测试" />
+    <MESSAGE value="提交-修改用户管理存在的bug" />
+    <MESSAGE value="提交-代码生成器（普通列表）还需优化" />
+    <MESSAGE value="提交-简化代码封装登录验证@log_in装饰器,static/data新增insert_data文件可直接在生成的表结构倒入默认数据" />
+    <MESSAGE value="提交-删除之前的自定义登录验证工具" />
+    <MESSAGE value="提交-修改无方法bug" />
+    <MESSAGE value="提交-新增运行项目步骤图片" />
+    <MESSAGE value="提交-菜单list、角色list、登录管理list分页、修复list页面筛选列报错、用户管理修改详情页面链接，新增删除功能" />
+    <MESSAGE value="提交-增加日志功能，后台输出用户操作方法，logs文件夹下存放备份日志，增加404页面（部署后才能用）" />
+    <MESSAGE value="提交-删除多余代码" />
+    <MESSAGE value="提交-修改readme" />
+    <MESSAGE value="提交-更新readme" />
+    <MESSAGE value="提交-新增展示图片" />
+    <MESSAGE value="提交-修改数据库文件，修改readme" />
+    <MESSAGE value="提交-修改readme，增加操作代码表格" />
+    <MESSAGE value="提交-菜单管理新增编辑可以选择icon，系统工具加icon列表" />
+    <MESSAGE value="提交-数据库文件更新" />
+    <MESSAGE value="提交-role模块和user模块bug修复" />
+    <MESSAGE value="提交-优化代码质量，首页新增动态头像显示，个人资料弹框，优化urls顺序" />
+    <MESSAGE value="提交-优化代码质量,登录页错误提示" />
+    <MESSAGE value="提交-修改密码" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交-修改密码" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/hRoot$manage.coverage" NAME="manage Coverage Results" MODIFIED="1576575665364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hRootEl$hRootEl.coverage" NAME="manage Coverage Results" MODIFIED="1559993045544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hRootEl$manage.coverage" NAME="manage Coverage Results" MODIFIED="1565752505885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>material_list</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sysmanage/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loginmanage/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#96#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/menu/menu_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="116" column="44" selection-start-line="116" selection-start-column="35" selection-end-line="116" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/zTreeStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GloryGarden/common/excel_process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#129#1111#0" />
+            <element signature="e#1202#1961#0" />
+            <element signature="e#2053#2816#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/utils/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="1811" selection-start-line="1811" selection-end-line="1811" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/templatetags/static.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ztree.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1609" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sublime_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3116">
+          <caret line="19" column="64" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GloryGarden/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1114">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loginmanage/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lhj/upload_file_import_data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GloryGarden/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/adds/ajaxfileupload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-110">
+          <caret line="190" column="31" selection-start-line="190" selection-start-column="31" selection-end-line="190" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#pre#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/version/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="51" column="45" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/version/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+          <folding>
+            <element signature="e#5596#5621#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/material/adjust.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lhj/list_html_common_function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lhj/edit_html_common_function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2698">
+          <caret line="2060" column="30" selection-start-line="2060" selection-start-column="30" selection-end-line="2060" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="28" column="94" selection-start-line="28" selection-start-column="94" selection-end-line="28" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/core/paginator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="77" column="26" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/asgiref/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/db/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="207" selection-start-line="207" selection-end-line="207" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/db/models/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="1468" selection-start-line="1468" selection-end-line="1468" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/db/models/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/material/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1534">
+          <caret line="107" column="24" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loginmanage/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1349">
+          <caret line="84" column="18" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#2029#2557#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/material_type/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods_type/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="87" selection-start-line="18" selection-start-column="87" selection-end-line="18" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/material_type/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="90" selection-start-line="18" selection-start-column="90" selection-end-line="18" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/role/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-251">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1387">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_goods_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="72" column="22" selection-start-line="72" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_material_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/material/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1862">
+          <caret line="98" column="97" selection-start-line="98" selection-start-column="97" selection-end-line="101" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/django/views/decorators/clickjacking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_goods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="228" column="34" selection-start-line="228" selection-start-column="34" selection-end-line="228" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#182#515#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods_type/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/role/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/views/v_material.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gujianonline/templates/goods/recipe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="189" column="53" selection-start-line="189" selection-start-column="53" selection-end-line="189" selection-end-column="53" />
+          <folding>
+            <element signature="e#296#1759#0#HTML" />
+            <element signature="e#342#491#0#HTML" />
+            <element signature="e#508#974#0#HTML" />
+            <element signature="e#991#1428#0#HTML" />
+            <element signature="e#1445#1740#0#HTML" />
+            <element signature="e#1772#3235#0#HTML" />
+            <element signature="e#1818#1967#0#HTML" />
+            <element signature="e#2062#2101#0#HTML" expanded="true" />
+            <element signature="e#2467#2904#0#HTML" />
+            <element signature="e#2921#3216#0#HTML" />
+            <element signature="e#3248#4702#0#HTML" />
+            <element signature="e#3294#3443#0#HTML" />
+            <element signature="e#3538#3577#0#HTML" expanded="true" />
+            <element signature="e#4021#4047#0#HTML" expanded="true" />
+            <element signature="e#4475#4513#0#HTML" expanded="true" />
+            <element signature="e#8598#9073#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

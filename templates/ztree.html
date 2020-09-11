@@ -1,0 +1,104 @@
+{% load static  %}
+
+<!-- ztree样式 -->
+<link rel="stylesheet" href="{% static 'css/zTreeStyle.css' %}" media="all" type="text/css">
+
+<!-- 先引入 jquery -->
+<script type="text/javascript" src="{% static 'js/jquery-2.1.1.js' %}"></script>
+<!-- 先引入 ztree -->
+<script type="text/javascript" src="{% static 'js/jquery.ztree.all.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.ztree.core.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.ztree.excheck.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.ztree.exedit.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.ztree.exhide.min.js' %}"></script>
+
+{#树通用模版传入参数即可 #}
+<div class="content_wrap" style="text-align: center">
+    <div class="zTreeDemoBackground left">
+        <ul id="tree_view" class="ztree"></ul>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        var setting = {
+
+            check: {
+                enable: {{ checked }}
+
+            },
+            view: {
+                showLine: true, //节点连线
+                showTitle: false,
+                fontCss: {},
+                expandSpeed: "300",
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: 'id',
+                    pIdKey: 'parent_id',
+                    rootPId: 0 //修正父级
+                }
+            },
+
+            callback: {
+                onClick: onClick
+            }
+        };
+
+        var zNodes = {{ menu_list_all|safe }}
+
+            $(document).ready(function () {
+                $.fn.zTree.init($("#tree_view"), setting, zNodes);
+            });
+
+
+        {#点击事件#}
+        function onClick(e, treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("tree_view");
+            zTree.expandNode(treeNode);
+            {#如果有渲染方法就执行#}
+            if (typeof parent.overload == 'function') {
+                parent.overload(treeNode.id)
+            }
+        }
+    })
+
+
+    //保存
+    function save() {
+        var zTree = $.fn.zTree.getZTreeObj("tree_view");
+        var nodes = zTree.getCheckedNodes();
+        var tmpNode;
+        var ids = "";
+        for (var i = 0; i < nodes.length; i++) {
+            tmpNode = nodes[i];
+            if (i != nodes.length - 1) {
+                ids += tmpNode.id + ",";
+            } else {
+                ids += tmpNode.id;
+            }
+        }
+
+        var layEvent = "{{ layEvent }}"; //操作列
+        var role_id = "{{ role_id }}";  //用户
+        var postData = {"role_id": role_id, "ids": ids, "layEvent": layEvent, csrfmiddlewaretoken: '{{ csrf_token  }}'};
+
+        //显示加载
+        $.ajax({
+            type: "POST",
+            url: "{{ ff_path }}",
+            dataType: "json",
+            data: postData,
+            success: function (data) {
+                if (data.info == "") {
+                    console.log('更新失败')
+                } else {
+                    console.log(data.info)
+                }
+            }
+        });
+    }
+</script>

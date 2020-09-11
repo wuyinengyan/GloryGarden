@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% block body %}
+    <!-- 内容主体区域 -->
+    <div class="layui-tab-item layui-show">
+        <div class="layui-form seller-form" style="padding:10px; background-color:white">
+            <div class="layui-form-item" style="margin-bottom: 0px;">
+                <div class="layui-inline">
+                    <label class="layui-form-label">名称：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" required lay-verify="name" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">版本：</label>
+                    <div class="layui-input-inline" id="version_box">
+                        <select id="version_id" name="version_id" lay-search>
+                            <option value=""></option>
+                            {% for version in version_list %}
+                            <option value="{{version.id}}">{{version.short_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">角色：</label>
+                    <div class="layui-input-inline" id="role_box">
+                        <select id="role_id" name="role_id" lay-search>
+                            <option value=""></option>
+                            {% for role in role_list %}
+                            <option value="{{role.id}}">{{role.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">类型：</label>
+                    <div class="layui-input-inline" id="type_box">
+                        <select id="type_id" name="type_id" lay-search>
+                            <option value=""></option>
+                            {% for type in type_list %}
+                            <option value="{{type.id}}">{{type.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">优先级：</label>
+                    <div class="layui-input-inline" id="priority_box">
+                        <select id="priority" name="priority" lay-filter="priority" lay-search>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                        <button type="button" id="submitall" class="layui-btn" lay-submit lay-filter="search">
+                            <i class="layui-icon layui-icon-search" style="font-size: 20px; color: #fff;"></i> 查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table id="table" lay-filter="table"></table>
+            <input type="file" id="import_file" name="import_file" style="display: none" onchange="upload_file(this, 'gjol_material_import')"/>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const table_prefix = 'gjol_material_';
+        const table_id = 'gjol_material_table';
+        const area = ['732px', '460px'];
+
+        layui.use(['table', 'form', 'layer'], function () {
+            let table = layui.table, form = layui.form, layer = layui.layer;
+
+            $("#priority").val("3");
+            // layui.form.render("select");
+
+            // ^LHJNote 2020年8月27日09:31:21$
+            // layui 多选框 单选框 下拉选项框都不显示问题
+            // https://blog.csdn.net/tavatimsa/article/details/82384023
+            form.render();
+
+            let table_cols = [[
+                {type: "checkbox"},
+                {field: 'id', title: 'ID', hide: true},
+                {field: 'name', title: '名称', width: 120, align:'center', templet: function (data) {
+                        return '<div style="text-align:left;">' + data.name + '</div>';
+                    }},
+                {field: 'type__name', title: '类型', width: 100, align: 'center'},
+                {field: 'version__short_name', title: '版本', width: 120, align:'center', hide: true, templet: function (data) {
+                        return '<div style="text-align:left;">' + data.version__short_name + '</div>';
+                    }},
+                {field: 'priority', title: '优先级', sort: true, width: 100, align: 'center'},
+                {field: 'sort', title: '排序', sort: true, width: 80, align: 'center', hide: true},
+                {field: 'price', title: '价格', sort: true, width: 80, align: 'center', templet: function (data) {
+                        return '<div style="text-align:right">' + data.price + '</div>';
+                    }},
+                {field: 'role__name', title: '所在角色', width: 160, align:'center', templet: function (data) {
+                        return '<div style="text-align:left;">' + data.role__name + '</div>';
+                    }},
+                {field: 'stock_info', title: '库存', width: 120, align: 'center', templet: function (data) {
+                        return '<div style="text-align:right">' + data.stock_info + '</div>';
+                    }},
+                {field: 'remark', title: '备注', width: 200, align:'center', templet: function (data) {
+                        return '<div style="text-align:left;">' + data.remark + '</div>';
+                    }},
+                {field: 'is_del', title: '操作', width: 100, align: 'center', fixed: 'right', templet: function (data) {
+                        return '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>';
+                    }}
+            ]];
+            let table_toolbar = '<div class="layui-table-tool-temp">' +
+                '<div class="layui-inline" lay-event="add" title="新增"><i class="layui-icon">&#xe654;</i></div>' +
+                '<div class="layui-inline" lay-event="import" title="批量导入"><i class="layui-icon">&#xe67c;</i></div>' +
+                '<div class="layui-inline" lay-event="adjust" title="批量调整"><i class="layui-icon">&#xe691;</i></div></div>';
+            let table_where = {"priority": $("#priority").val()};
+
+            // 表格加载
+            layui_table_render(table_prefix, table_cols, table_toolbar, 'full-160', table_where);
+
+            // 查询
+            form.on("submit(search)", function (data) {
+                table.reload(table_id, {
+                    where: data.field,
+                    page: {curr: 1},
+                });
+            });
+
+            // 监听头部新增事件
+            table.on('toolbar(table)', function (obj) {
+                let event_type = obj.event;
+                let iframe_id = table_prefix + event_type;
+                if (event_type === 'add') {
+                    layer_open_base_event('新增', area, iframe_id, iframe_id, 'save');
+                } else if (event_type === 'import') {
+                    $('#import_file').click();
+                } else if (event_type === 'adjust') {
+                    let check_status = table.checkStatus(table_id);
+                    let data = check_status.data;
+                    if(data.length === 0){
+                        layer.msg("请先选择一行数据！", {time: 1200});
+                        return false;
+                    }
+                    let ids = "";
+                    $.each(data, function (index, item) {
+                        ids += item.id + ',';
+                    })
+                    ids = ids.substring(0, ids.length - 1);
+                    layer_open_batch_adjust(ids);
+                }
+            });
+
+            // 监听操作栏按钮
+            table.on('tool(table)', function (obj) {
+                layer_open_common_event(obj, table_prefix, area);
+            });
+        })
+
+
+        // 批量调整弹出框事件
+        function layer_open_batch_adjust(ids){
+            layer.open({
+                btn: ['确认', '取消'],
+                yes: function (index, layero) {
+                    // #save为页面层提交按钮ID
+                    let btn_submit = layero.find('#gjol_material_adjust iframe').contents().find('#save');
+                    let hid_ids = layero.find('#gjol_material_adjust iframe').contents().find('#ids');
+                    hid_ids.val(ids)
+                    btn_submit.click();  //  触发提交监听
+                },
+                title: '调整',
+                id: 'gjol_material_adjust',
+                area: ['400px', '240px'],
+                content: 'gjol_material_adjust',
+                anim: 4,  // 从左翻滚
+                btnAlign: 'c',  // 按钮居中
+                type: 2,  // 类型iframe
+                resize: true,
+                moveOut: true,
+                maxmin: true,
+                scrollbar: true,
+                shadeClose: true, //点击遮罩关闭层
+            })
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <!-- 内容主体区域 -->
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        登录管理
+                    </div>
+                    <div class="layui-card-body">
+                        <table id="table" lay-filter="table"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;      //表格
+            //table实例
+            table.render({
+                elem: '#table'
+                , height: 500
+                , url: '{{ path }}/online_data' //数据接口
+                , page: true //开启分页
+                , toolbar: 'right' //默认操作行
+                , loading: true //加载条
+                , cols: [[
+                    {checkbox: true, sort: true, fixed: 'left'}
+                    , {title: '序号', type: 'numbers', sort: true, fixed: 'left', width: 70,}
+                    , {field: 'user_full_name', title: '用户名称', width: 400}
+                    , {field: 'online_date', title: '登录时间', width: 600}
+
+
+                ]]
+            });
+            {#监听头部新增事件#}
+            table.on('tool(table)', function (obj) {
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+                var title = ''  //弹出框标题
+                var area = ''   //弹出框大小
+                var btn = ''
+                if (layEvent === 'del') {
+                    title = '强制下线'
+                    area = ['200px', '100px']
+                    btn = ['确认', '取消']
+                }
+                //弹出框
+                layer.open({
+                    btn: btn,
+                    btn1: function (index, layero) {
+
+                    },
+                    btn2: function (index, layero) {
+                    },
+                    title: title,
+                    id: "menu_list_operation",
+                    anim: 4, //从左翻滚
+                    btnAlign: 'c', //按钮居中
+                    type: 1, //类型iframe
+                    resize: true,
+                    moveOut: true,
+
+                    scrollbar: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: area,
+                    content: ''
+                });
+
+            });
+        })
+    </script>
+{% endblock %}

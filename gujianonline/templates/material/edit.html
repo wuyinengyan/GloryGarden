@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:20px 20px 0px 0px; overflow:auto;">
+        <from class="layui-form">
+            <input type="text" class="layui-hide" name="id" value="{{ material_info.0.id }}">
+            {% csrf_token %}{# 随机码 #}
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label"><i style="color:red; font-weight:bold"> * </i>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="name" name="name" value="{{ material_info.0.name|safe }}"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label"><i style="color:red; font-weight:bolder"> * </i>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</label>
+                    <div class="layui-input-block">
+                        <select id="type_id" name="type_id" lay-search>
+                            {% for type in type_list %}
+                            <option value="{{type.id}}">{{type.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label"><i style="color:red; font-weight:bolder"> * </i>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</label>
+                    <div class="layui-input-block">
+                        <select id="version_id" name="version_id" lay-search>
+                            {% for version in version_list %}
+                            <option value="{{version.id}}">{{version.short_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所在角色：</label>
+                    <div class="layui-input-block">
+                        <select id="role_id" name="role_id" lay-search>
+                            {% for role in role_list %}
+                            <option value="{{role.id}}">{{role.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="sort" name="sort"  value="{{ material_info.0.sort|safe }}"
+                         class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">优&nbsp;先&nbsp;&nbsp;级：</label>
+                    <div class="layui-input-block">
+                        <select id="priority" name="priority" lay-search>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="price" name="price"  value="{{ material_info.0.price|safe }}"
+                         class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="stock_info" name="stock_info"  value="{{ material_info.0.stock_info|safe }}"
+                         class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+                <div class="layui-input-block">
+                    <textarea type="text" id="remark" name="remark" class="layui-input" style="width:564px;"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit onclick="" id="save" lay-filter="save">保存</button>
+                </div>
+            </div>
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const table_id = 'gjol_material_table';
+
+        layui.use(['layer', 'table', 'form', 'upload'], function (data) {
+            let layer = layui.layer, table = layui.table, form = layui.form, upload = layui.upload;
+
+            $("#priority").val("{{ material_info.0.priority }}");
+            $("#version_id").val("{{ material_info.0.version_id }}");
+            $("#type_id").val("{{ material_info.0.type_id }}");
+            $("#role_id").val("{{ material_info.0.role_id }}");
+            $("#remark").val("{{ role_list.0.remark }}");
+
+            form.render();
+            form_on_submit('{{path}}', table_id);
+        });
+    </script>
+{% endblock %}

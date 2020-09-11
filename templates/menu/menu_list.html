@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static  %}
+<!-- 页面引入css -->
+{% block styles %}
+    <style>
+        .layui-form-item {
+            margin-bottom: 0px;
+
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <!-- 内容主体区域 -->
+
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-row layui-col-space10">
+
+                    <div class="layui-col-md2">
+                        <div class="layui-card" style="border-radius:10px;">
+                            <div class="layui-card-body">
+                                <iframe class='' frameborder="no" allowtransparency="yes"
+                                        height="561px" width="150" border="0px" scrolling="yes"
+                                        src="{{ path }}/menu_list_left_tree" id="menu_list_left_tree"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md10">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                菜单管理
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-row layui-col-space10 layui-form">
+                                    <div class="layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">菜单名称</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="name" required lay-verify=""
+                                                       placeholder="请输入菜单名称" value="" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md3">
+
+                                    </div>
+                                    <div class="layui-col-md3">
+
+                                    </div>
+                                    <div class="layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                                                <button id="submitall" class="layui-btn" lay-submit lay-filter="*">
+                                                    <i class="layui-icon layui-icon-search"
+                                                       style="font-size: 20px; color: #fff;"></i>
+                                                    查询
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <table id="table" lay-filter="table" lay-data="{id: 'menu_list'}"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        var iframe_id = self.frameElement.getAttribute('id')
+        {#查询#}
+        layui.use('form', function () {
+            var form = layui.form;        //表单
+            var table = layui.table;      //表格
+            form.on('submit(*)', function (data) {
+                {#如果有参数#}
+                if (!data.field.name || data.field.name === '') {
+                    table.reload('menu_list', {
+                        url: '{{ path }}/menu_data'
+                        , where: {name: '', pid: '', iframe_id: iframe_id} //设定异步数据接口的额外参数
+                    });
+                } else {
+                    table.reload('menu_list', {
+                        url: '{{ path }}/menu_data'
+                        , where: {name: data.field.name, iframe_id: iframe_id} //设定异步数据接口的额外参数
+                    });
+                }
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+        });
+
+        {#重载表格#}
+        function overload(id) {
+            var table = layui.table;      //表格
+            table.reload('menu_list', {
+                url: '{{ path }}/menu_data'
+                , where: {name: '', pid: id, iframe_id: iframe_id} //设定异步数据接口的额外参数
+                //,height: 300
+            });
+        };
+        {#初始化渲染#}
+        layui.use('element', function () {
+            var $ = layui.jquery, layer = layui.layer;
+            var table = layui.table;      //表格
+            var laypage = layui.laypage;   //分页
+            //table实例
+            table.render({
+                elem: '#table'
+                , id: 'menu_list'
+                , height: 450
+                , url: '{{ path }}/menu_data' //数据接口
+                , where: {name: '', pid: '', iframe_id: iframe_id} //设定异步数据接口的额外参数
+                //, request: {
+                //pageName: 'pageIndex' //页码的参数名称，默认：page
+                //, limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                //}
+                , text: '对不起，加载出现异常！'
+                , response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , page: true //开启分页
+                , toolbar: '<div class="layui-table-tool-temp">' +
+                    '{% if munu_button_rights.role_create_rights == 'false' %}{% else %}<div class="layui-inline" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>{% endif %}' +
+                    '</div>' //默认操作行
+                , loading: true //加载条
+
+                , theme: '#c00'
+
+                , limit: 10
+                , cols: [[
+                    {title: '序号', type: 'numbers', sort: true, fixed: 'left', width: 70,}
+                    , {field: 'id', title: 'ID', width: 100, sort: true, fixed: 'left'}
+                    , {field: 'name', title: '菜单名称', width: 400}
+                    , {field: 'tree_id', title: '树id', width: 150}
+                    , {
+                        fixed: 'right',
+                        title: '操作',
+                        width: 200,
+                        align: 'center',
+                        templet: function (d) {
+                            return '  {% if munu_button_rights.role_select_rights == 'true' %}<a class="layui-btn layui-btn-xs" lay-event="info">查看</a>{% endif %}{% if munu_button_rights.role_update_rights == 'true' %}  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>{% endif %}\n' +
+                                ' {% if munu_button_rights.role_delete_rights == 'true' %}<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>{% endif %}'
+                        }
+                    }
+
+                ]]
+
+            });
+
+
+            {#监听头部新增事件#}
+            table.on('toolbar(table)', function (obj) {
+                var layEvent = obj.event; //获得 lay-event 对应的值
+                //弹出框
+                if (layEvent === 'add') {
+                    layer.open({
+                        btn: ['确认', '取消'],
+                        btn1: function (index, layero) {
+                            var submit = layero.find('#menu_list_' + layEvent + ' iframe').contents().find("#commit");// #subBtn为页面层提交按钮ID
+                            submit.click();// 触发提交监听
+
+                        },
+                        btn2: function (index, layero) {
+                        },
+                        title: '新增',
+                        id: "menu_list_" + layEvent + "",
+                        anim: 4, //从左翻滚
+                        btnAlign: 'c', //按钮居中
+                        type: 2, //类型iframe
+                        resize: true,
+                        moveOut: true,
+                        maxmin: true,
+                        scrollbar: true,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['500px', '520px'],
+                        content: '{{ path }}/menu_' + layEvent + ''
+                    });
+                }
+
+            });
+
+
+            {#监听操作栏按钮#}
+            table.on('tool(table)', function (obj) {
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+                var title = ''  //弹出框标题
+                var area = ''   //弹出框大小
+                var btn = ''
+                if (layEvent === 'info') {
+                    title = '查看'
+                    area = ['500px', '520px']
+                } else if (layEvent === 'edit') {
+                    title = '编辑'
+                    area = ['500px', '520px']
+                    btn = ['确认', '取消']
+                } else if (layEvent === 'del') {
+                    title = '删除'
+                    area = ['350px', '220px']
+                    btn = ['确认', '取消']
+                }
+
+
+                //弹出框
+                layer.open({
+                    btn: btn,
+                    btn1: function (index, layero) {
+                        if (layEvent === 'edit') {
+                            var submit = layero.find('#menu_list_' + layEvent + ' iframe').contents().find("#commit");// #subBtn为页面层提交按钮ID
+                            submit.click();// 触发提交监听
+                            layer.msg('编辑成功', {
+                                time: 1000, //1秒自动关闭
+                                end: function () {
+                                    table.reload('menu_list') //刷新表格
+                                    document.getElementById('menu_list_left_tree').contentWindow.location.reload(true); //刷新左侧树
+                                }
+                            })
+                        } else if (layEvent === 'del') {
+                            var postData = {"menu_id": data.id, csrfmiddlewaretoken: '{{ csrf_token  }}'};
+                            $.ajax({
+                                type: "post",
+                                url: "{{ path }}/menu_" + layEvent + "",
+                                data: postData,//参数
+                                dataType: "json",
+                                success: function (suc) {
+                                    if (suc.status === 'true') {
+                                        layer.close(index)//关闭当前窗口
+                                        layer.msg(suc.info, {
+                                            time: 1000, //1秒自动关闭
+                                            end: function () {
+                                                obj.del();
+                                                table.reload('menu_list') //刷新表格
+                                                document.getElementById('menu_list_left_tree').contentWindow.location.reload(true); //刷新左侧树
+                                            }
+                                        })
+                                    } else {
+                                        layer.close(index)//关闭当前窗口
+                                        layer.msg(suc.info, {
+                                            time: 1200, //1秒自动关闭
+                                        })
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    btn2: function (index, layero) {
+                    },
+                    title: title,
+                    id: "menu_list_" + layEvent + "",
+                    anim: 4, //从左翻滚
+                    btnAlign: 'c', //按钮居中
+                    type: 2, //类型iframe
+                    resize: true,
+                    moveOut: true,
+                    maxmin: true,
+                    scrollbar: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: area,
+                    content: '{{ path }}/menu_' + layEvent + '?menu_id=' + data.id + ''
+                });
+            });
+        })
+    </script>
+{% endblock %}

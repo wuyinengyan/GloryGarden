@@ -1,0 +1,560 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+
+
+<!-- 页面引入css -->
+{% block styles %}
+
+    <style>
+        body {
+            display: block;
+            margin: 0px;
+            background-color: #f4f7fa;
+        }
+
+        .layui-footer .layui
+        body {
+            display: block;
+            margin: 0px;
+            background-color: #f4f7fa;
+        }
+
+
+        .layui-layout-admin .layui-header {
+            height: 50px;
+            background-color: {% if  user_item.0.theme  %}{{ user_item.0.theme }};
+        {% else %} #009688;
+        {% endif %} box-sizing: border-box;
+        }
+
+
+        .layui-layout .layui-logo, .layui-layout .layui-logo a {
+            color: #fff;
+            color: rgba(255, 255, 255, .8);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1002;
+            width: 160px;
+            height: 49px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            overflow: hidden;
+            font-weight: bold;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: {% if  user_item.0.theme  %}{{ user_item.0.theme }};
+        {% else %} #009688;
+        {% endif %} line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+
+        }
+
+
+        .layui-nav-tree {
+            width: 160px;
+            padding: 0;
+        }
+
+        .layui-header > .layui-layout-left > .layui-nav-item {
+            height: 50px;
+        }
+
+        .layui-header > .layui-layout-right > .layui-nav-item {
+            height: 50px;
+        }
+
+        .layui-header > .layui-layout-right {
+            height: 50px;
+        }
+
+        .layui-header > .layui-layout-left {
+            height: 50px;
+        }
+
+        .layui-nav-child {
+            top: 50px;
+        }
+
+        .pagetabs {
+            height: 40px;
+            line-height: 40px;
+            background-color: #fff;
+            box-sizing: border-box;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+            position: fixed;
+            top: 50px;
+            right: 0;
+            z-index: 999;
+            left: 160px;
+        }
+
+        .pagetabs > .layui-tab {
+            height: 30px;
+            margin: 0;
+        }
+
+        -body {
+            left: 160px;
+        }
+
+
+        .layui-layout-admin .layui-side {
+            top: 50px;
+            width: 160px;
+        }
+
+        .layui-col-xs3 {
+            text-align: center;
+        }
+
+        .layui-col-xs3_i {
+            font-size: 28px;
+        }
+
+        {#tab#}
+        .layui-tab-card > .layui-tab-title {
+            background-color: #f2f2f2;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+        }
+    </style>
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="layui-layout layui-layout-admin">
+        {#top#}
+        <div class="layui-header">
+            <div class="layui-logo">虽千万人，吾往矣</div>
+            <!-- hearder左边菜单 -->
+            <ul class="layui-nav layui-layout-left" lay-filter="t_leftmenu">
+                <li class="layui-nav-item layui-this"><a href="">
+                    {% for home in homepage %}
+                        {{ home.name }}
+                    {% endfor %}
+                </a></li>
+                {#                <li class="layui-nav-item">#}
+                {#                    <a href="javascript:;">报表模块</a>#}
+                {#                    <dl class="layui-nav-child"> <!-- 二级菜单 -->#}
+                {#                        {% for topmenu in topmenu %}#}
+                {#                            <dd><a href="">{{ topmenu.name }}</a></dd>#}
+                {#                        {% endfor %}#}
+                {#                    </dl>#}
+                {#                </li>#}
+            </ul>
+            <!-- hearder右边菜单 -->
+            <ul class="layui-nav layui-layout-right" lay-filter="t_rightmenu">
+                <!-- 颜色选择器 -->
+                <li class="layui-nav-item" style="top: 0px;">
+                    <div id="test-all" class="layui-inline">
+                        <div class="layui-unselect layui-colorpicker">
+                            <span class="layui-colorpicker-trigger-bgcolor">
+                                <span class="layui-colorpicker-trigger-span" lay-type="rgba"
+                                      style="background:
+                                              {% if  user_item.0.theme %}{{ user_item.0.theme }};{% else %}#009688;{% endif %}">
+                                    <i class="layui-icon layui-colorpicker-trigger-i layui-icon-down"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <!-- 个人信息 -->
+                <li class="layui-nav-item">
+                    <a href="#">
+                        <img src="media/{{ user_item.0.img_url }}" class="layui-nav-img">
+                        {{ user_item.0.user_full_name }}
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="#" id="my_info">个人信息</a></dd>
+                        {#                        <dd><a href="">安全设置</a></dd>#}
+                    </dl>
+                </li>
+                <!-- 退出 -->
+                <li class="layui-nav-item"><a href="{{ path }}/quit">退出</a></li>
+            </ul>
+        </div>
+
+        {#left#}
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll" style="overflow-y:hidden">
+                <ul id="leftmenu" class="layui-nav layui-nav-tree my-tt" lay-filter="leftmenu"> {#my-tt 同调#}
+                    {% recursetree leftmenu %}
+                        <li class="layui-nav-item {{ node.menu_type }}" id="{{ node.id }}" title="{{ node.name }}"
+                            value="{{ node.menu_url }}">
+                            <a href="#">{{ node.name }}</a>
+                            {% if not node.is_leaf_node %}
+                                <ul class="children layui-nav-child">
+                                    {{ children }}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endrecursetree %}
+                </ul>
+            </div>
+        </div>
+
+        {#center#}
+        <div class="pagetabs" id="tabs">
+            <div class="layui-tab layui-tab-card " lay-allowClose="true" lay-filter="tabs">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" id="home">首页</li>
+                </ul>
+
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+
+                        <div class="layui-row layui-col-space22">
+                            <div class="layui-col-md4">
+                                <div class="layui-card">
+                                    <div class="layui-card-header">历史窗口</div>
+                                    <div class="layui-card-body">
+                                        {#历史窗口#}
+                                        <div carousel-item="">
+                                            <ul id="select_browse_record"
+                                                class="layui-row layui-col-space10 layui-this "
+                                                lay-filter="record">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md4">
+                                <div class="layui-card">
+                                    <div class="layui-card-header">当前时间</div>
+                                    <div class="layui-card-body">
+                                        {#当前时间#}
+                                        <div carousel-item="">
+                                            <ul id="showtime"
+                                                class="layui-row layui-col-space10 layui-this "
+                                                lay-filter="record">
+                                                <li class="layui-col-xs3">
+                                                    <a>
+                                                        <i class=" layui-icon  layui-col-xs3_i" id="showtime_year"></i>
+                                                        <p>year</p>
+                                                    </a>
+                                                </li>
+                                                <li class="layui-col-xs3">
+                                                    <a>
+                                                        <i class=" layui-icon  layui-col-xs3_i" id="showtime_month"></i>
+                                                        <p>month</p>
+                                                    </a>
+                                                </li>
+                                                <li class="layui-col-xs3">
+                                                    <a>
+                                                        <i class=" layui-icon  layui-col-xs3_i" id="showtime_day"></i>
+                                                        <p>day</p>
+                                                    </a>
+                                                </li>
+                                                <li class="layui-col-xs3">
+                                                    <a>
+                                                        <i class=" layui-icon  layui-col-xs3_i" id="showtime_time"></i>
+                                                        <p>time</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+
+    <script>
+        //设置左侧菜单栏主题颜色
+        $('.header-demo,.layui-side .layui-nav ').css('background-color',
+            {% if  user_item.0.theme  %}'{{ user_item.0.theme }}'{% else %}'#009688'
+            {% endif %}
+        )
+
+        //当前时间控件
+        window.onload = function () {
+            var d = new Date();
+            //获取年份
+            //var nian=d.getYear();//2016  //16
+            var nian = d.getFullYear();//2016
+            //获取月
+            var yue = d.getMonth() + 1;//6   july 7月   0-11
+            //获取星期几
+            var xq = d.getDay();//5    0-6    0:星期天
+            //获取几号
+            var dd = d.getDate();//1    1-31
+            //获取小时
+            var h = d.getHours();// 16下午4点     24小时制
+            //获取分钟
+            var m = d.getMinutes();//31分
+            //获取描述
+            var s = d.getSeconds();//50秒
+            //渲染浏览记录
+            $.ajax({
+                type: "GET",
+                url: "{{ path }}/select_browse_record",
+                data: {menu_id: $(this).parent('').attr('id')},
+                dataType: "json",
+                success: function (data) {
+                    var select_browse_record_list = "";
+                    var select_browse_record_list_name = "";
+                    for (i in data.menu) {
+
+                        if (data.menu[i].name.length > 5) {
+                            select_browse_record_list_name = data.menu[i].name.substr(0, 4) + "..."
+                        } else {
+                            select_browse_record_list_name = data.menu[i].name
+                        }
+                        select_browse_record_list += "<li class=\"layui-col-xs3\" id=\"" + data.menu[i].id + "\" title=\"" + data.menu[i].name + "\" value=\"" + data.menu[i].menu_url + "\">\n" +
+                            "<a lay-href=\"home/homepage1.html\">\n" +
+                            " <i class=\"" + data.menu[i].menu_icon + " layui-icon  layui-col-xs3_i\"></i>\n" +
+                            "<p>" + select_browse_record_list_name + "</p>\n" +
+                            "</a>\n" +
+                            "</li>"
+
+                    }
+                    $('#select_browse_record').html(
+                        select_browse_record_list
+                    )
+                }
+            });
+
+            $("#showtime_year").text(nian);
+            $("#showtime_month").text(yue);
+            $("#showtime_day").text(dd);
+            $("#showtime_time").text(h + ":" + m)
+
+        };
+        //layui部分
+        layui.use('element', function () {
+            //element模块的实例
+            //返回的element变量为该实例的对象，携带一些用于元素操作的基础方法
+            var element = layui.element;
+            var $ = layui.jquery, layer = layui.layer;
+            //清除左树子集的class（django mptt children 特性）
+            $(".layui-nav-item .layui-nav-item").removeClass("layui-nav-item");
+            //更新全部  2.1.6 可用 element.render() 方法替代
+            element.init();
+            var colorpicker = layui.colorpicker; //颜色选择
+            //开启全功能
+            colorpicker.render({
+                elem: '#test-all'
+                , color: 'rgba(7, 155, 140, 1)'
+                , format: 'rgb'
+                , predefine: true
+                , alpha: true
+                , size: 'sm'
+                , done: function (color) {
+                    $('#test-all-input').val(color); //向隐藏域赋值
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path }}/check_theme",
+                        data: {theme: color, csrfmiddlewaretoken: '{{ csrf_token  }}'},
+                        dataType: "json",
+                        success: function (data) {
+                            layer.tips('给侧边栏设置了颜色值：' + color, this.elem);
+                        }
+                    });
+                    color || this.change(color); //清空时执行 change
+                }
+                , change: function (color) {
+                    //给当前页面头部和左侧设置主题色
+                    $('.header-demo,.layui-side .layui-nav ').css('background-color', color);
+                    $('.layui-logo ').css('background-color', color);
+                    $('.layui-header ').css('background-color', color);
+
+                }
+            });
+
+            //历史记录点击事件
+            $("#select_browse_record").on('click', "li", function () {
+                thisid = $(this).attr('id');
+                var addtabname = $('.my-tt #' + thisid + '').attr('title'); //得到同调点击的左树title
+                var addtabval = $('.my-tt #' + thisid + '').attr('value'); //得到同调点击的左树value
+                var addtabid = $('.my-tt #' + thisid + '').attr('id'); //得到同调点击的左树id
+                var addtabclass = $('.my-tt #' + thisid + '').attr('class');
+                var havetab = false //定义当前没有这个tab
+                var tabsValues = $('.layui-tab-title li').length //tab数量
+                var havetabval = '' //定义当前tab内容为空（再获取）
+                //循环看是否有这个tab
+                for (var i = 1; i < tabsValues; i++) {
+                    //获取全部tab属性为value的值
+                    var tabcontexts = $('.layui-tab-title li:eq(' + [i] + ')').text().replace('ဆ', '');
+                    //如果tab有左边菜单传入value内容
+                    if (addtabname === tabcontexts) {
+                        havetabval = tabcontexts;
+                        havetab = true
+                    }
+                }
+                //如果没有添加并且树类型是叶子
+                if (havetab === false && addtabclass.match('leaf')) {
+                    element.tabAdd('tabs', {
+                        class: 'layui-this',
+                        title: '<span title="' + addtabval + '">' + addtabname + '</span>' //title==url地址
+                        ,
+                        content: '<iframe id="' + addtabid + '" class=\'layui-col-xs12\'   frameborder="no"  allowtransparency="yes" height="600"  border="0px" scrolling="no"  src="' + addtabval + '?iframe_id=' + addtabid + '"></iframe>  '
+                        ,
+                        id: addtabname
+                    });
+                    element.tabChange('tabs', addtabname); //当前的tab焦点
+                } else {
+                    element.tabChange('tabs', addtabname); //当前的tab焦点
+                }
+            })
+
+            //监听左树点击
+            element.on('nav(leftmenu)', function addtabandpage(data) {
+                $(".layui-tab-title #home i").remove() //删除首页关闭按钮
+                var addtabname = $(this).parent('').attr('title'); //得到当前点击的li name
+                var addtabval = $(this).parent('').attr('value'); //得到当前点击的li对象
+                var addtabid = $(this).parent('').attr('id'); //得到同调点击的左树id
+                console.log(addtabid)
+                var addtabclass = $(this).parent('').attr('class'); //得到当前点击的li class属性
+                var havetab = false //定义当前没有这个tab
+                var tabsValues = $('.layui-tab-title li').length; //tab数量
+                var havetabval = '' //定义当前tab内容为空（再获取）
+                //循环看是否有这个tab
+                for (var i = 1; i < tabsValues; i++) {
+                    //获取全部tab属性为value的值
+                    var tabcontexts = $('.layui-tab-title li:eq(' + [i] + ')').text().replace('ဆ', '');
+                    //如果tab有左边菜单传入value内容
+                    if (addtabname === tabcontexts) {
+                        havetabval = tabcontexts;
+                        havetab = true
+                    }
+                }
+
+
+                //如果没有添加并且树类型是叶子
+                if (havetab === false && addtabclass.match('leaf')) {
+                    element.tabAdd('tabs', {
+                        class: 'layui-this',
+                        title: '<span title="' + addtabval + '">' + addtabname + '</span>' //title==url地址
+                        ,
+                        content: '<iframe  id="' + addtabid + '" class=\'layui-col-xs12\'   frameborder="no"  allowtransparency="yes" height="600"  border="0px" scrolling="no"  src="' + addtabval + '?iframe_id=' + addtabid + '"></iframe>  '
+                        ,
+                        id: addtabname
+                    });
+                    element.tabChange('tabs', addtabname); //当前的tab焦点
+                    //传入浏览记录
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path }}/add_browse_record",
+                        data: {id: $(this).parent('').attr('id')},
+                        dataType: "json",
+                        success: function (data) {
+                            console.log("历史记录：" + data.info)
+                        }
+                    });
+                    //更新浏览记录
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path }}/select_browse_record",
+                        data: {menu_id: $(this).parent('').attr('id')},
+                        dataType: "json",
+                        success: function (data) {
+                            var select_browse_record_list = "";
+                            var select_browse_record_list_name = "";
+                            for (i in data.menu) {
+                                if (data.menu[i].name.length > 5) {
+                                    select_browse_record_list_name = data.menu[i].name.substr(0, 4) + "..."
+                                } else {
+                                    select_browse_record_list_name = data.menu[i].name
+                                }
+                                select_browse_record_list += "<li class=\"layui-col-xs3\" id=\"" + data.menu[i].id + "\" title=\"" + data.menu[i].name + "\" value=\"" + data.menu[i].menu_url + "\">\n" +
+                                    "<a lay-href=\"home/homepage1.html\">\n" +
+                                    " <i class=\"" + data.menu[i].menu_icon + " layui-icon  layui-col-xs3_i\"></i>\n" +
+                                    "<p>" + select_browse_record_list_name + "</p>\n" +
+                                    "</a>\n" +
+                                    "</li>"
+                            }
+
+                            $('#select_browse_record').html(
+                                select_browse_record_list
+                            )
+
+                        }
+                    });
+
+                } else {
+                    element.tabChange('tabs', addtabname); //当前的tab焦点
+                }
+            });
+
+
+            //监听tab点击
+            element.on('tab(tabs)', function (data) {
+                $(".layui-tab-title #home i").remove();//删除首页关闭按钮
+                var has = '{{ path }}/' + $(this).children('').attr('title'); //hash地址
+                element.tabChange('tabs', has); //重新渲染
+            });
+            //监听个人信息点击
+            $(document).on('click', '#my_info', function () {
+                layer.open({
+                    btn: ['确认'],
+                    btn1: function (index, layero) {
+                        layer.close(index);
+                    },
+                    title: '个人资料',
+                    id: "my_info_open",
+                    anim: 4, //从左翻滚
+                    btnAlign: 'c', //按钮居中
+                    type: 2, //类型iframe
+                    resize: true,
+                    moveOut: true,
+                    maxmin: true,
+                    scrollbar: true,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['500px', '520px'],
+                    content: '{{ path }}/user_info?user_list_id={{ user_item.0.user_id }}'
+                })
+            });
+        });
+
+        {#定时刷新当前时间#}
+
+        function showtime() {
+            var d = new Date();
+            //获取年份
+            //var nian=d.getYear();//2016  //16
+            var nian = d.getFullYear();//2016
+            //获取月
+            var yue = d.getMonth() + 1;//6   july 7月   0-11
+            //获取星期几
+            var xq = d.getDay();//5    0-6    0:星期天
+            //获取几号
+            var dd = d.getDate();//1    1-31
+            //获取小时
+            var h = d.getHours();// 16下午4点     24小时制
+            //获取分钟
+            var m = d.getMinutes();//31分
+            //获取描述
+            var s = d.getSeconds();//50秒
+            $("#showtime_year").text(nian);
+            $("#showtime_month").text(yue);
+            $("#showtime_day").text(dd);
+            $("#showtime_time").text(h + ":" + m)
+
+        }
+
+        {#每分钟刷新#}
+        setInterval("showtime()", 6000);
+        $(".layui-tab-title #home i").remove() //删除首页关闭按钮
+    </script>
+
+{% endblock %}

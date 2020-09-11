@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 475px;overflow:auto;">
+        <form class="layui-form">
+            <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+
+            {% csrf_token %}{# 随机码 #}
+            <div class="layui-form-item">
+                <label class="layui-form-label">父级菜单</label>
+                <div class="layui-input-block" id="parent">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="" name="parent_name" id="parent_name"
+                           class="layui-input" value="{{ menu_parent.name }}" readonly="readonly">
+                    <input type="hidden" name="parent_id" value="{{ menu_parent.id }}" id="parent_id">
+                    <input type="hidden" name="my_id" value="{{ menu_my.id }}" id="my_id">
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="required|name" autocomplete="off" placeholder=""
+                           name="name"
+                           value="{{ menu_my.name }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单链接</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off" name="menu_url"
+                           value="{% if not menu_my.menu_url %}{% else %}{{ menu_my.menu_url }}{% endif %}"
+                           placeholder=""
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单排序</label>
+                <div class="layui-input-block">
+                    <input type="number" lay-verify="required" autocomplete="off" name="menu_order"
+                           value="{{ menu_my.menu_order }}"
+                           placeholder=""
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单图标</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="required" autocomplete="off" placeholder="" name="menu_icon"
+                           id="check_icon"
+                           class="layui-input"
+                           value="{{ menu_my.menu_icon }}"
+                           readonly="readonly">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单类型</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="menu_type" value="tree" title="树菜单"
+                           checked="{% if menu_my.menu_type == 'tree' %}checked{% endif %}">
+                    <input type="radio" name="menu_type" value="leaf" title="叶菜单"
+                           {% if menu_my.menu_type == 'leaf' %}checked{% endif %}>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有效</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="is_active" value="1" title="是"
+                           checked="{% if menu_my.menu_type == '1' %}checked{% endif %}">
+                    <input type="radio" name="is_active" value="0" title="否"
+                           {% if menu_my.menu_type == '0' %}checked{% endif %}>
+                </div>
+            </div>
+            {#隐藏的#}
+            <div class="layui-form-item" style="display:none">
+                <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                    <button id="commit" class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+
+
+
+
+
+
+    <script>
+        layui.use('element', function () {
+            var form = layui.form;
+            var layer = layui.layer;
+            form.render();//渲染
+            {#表单验证#}
+            form.verify({
+                name: function (value, item) { //value：表单的值、item：表单的DOM对象
+                    if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                        return '用户名不能有特殊字符';
+                    }
+                    if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                        return '用户名首尾不能出现下划线\'_\'';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '用户名不能全为数字';
+                    }
+                    if (value.length < 3 && value.length > 20) {
+                        return '请输入3-20位的菜单名称';
+                    }
+                }
+
+                //我们既支持上述函数式的方式，也支持下述数组的形式
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+            });
+            //表单提交
+            form.on('submit(*)', function (data) {
+                var $ = layui.jquery;
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path }}/{{ action }}",
+                    data: data.field,
+                    dataType: "json",
+                    success: function (data) {
+                        parent.document.getElementById('menu_list_left_tree').contentWindow.location.reload()
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.layui.table.reload('menu_list');
+                        layer.msg('新增菜单成功', {
+                            time: 3000, //3秒自动关闭
+                            end: function () {
+                                parent.layui.table.reload('menu_list');
+                            }
+                        })
+                    }, error: function (data) {
+
+                    }
+                });
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+            });
+        });
+
+
+        {#父级选择#}
+        $("#parent_name").focus(function () {
+            //弹出框
+            layer.open({
+                btn: ['确认', '取消'],
+                btn1: function (index, layero) {
+                    $('#menu_tree iframe')[0].contentWindow.save(); //使用树ifrname的sava方法
+                    layer.close(index);
+                },
+                btn2: function (index, layero) {
+
+                },
+                title: '父级选择',
+                id: "menu_tree",
+                anim: 4, //从左翻滚
+                btnAlign: 'c', //按钮居中
+                type: 2, //类型iframe
+                resize: true,
+                moveOut: true,
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area: ['400px', '350px'],//弹出框大小
+                content: '{{ path }}/menu_add_parent_tree'//定位
+            });
+        });
+        {#icon选择#}
+        $("#check_icon").focus(function () {
+            console.log(1);
+            //弹出框
+            layer.open({
+                btn: ['确认', '取消'],
+                btn1: function (index, layero) {
+                    layer.close(index);
+                },
+                btn2: function (index, layero) {
+
+                },
+                title: 'icon选择',
+                id: "menu_tree",
+                anim: 4, //从左翻滚
+                btnAlign: 'c', //按钮居中
+                type: 2, //类型iframe
+                resize: true,
+                moveOut: true,
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area: ['400px', '350px'],//弹出框大小
+                content: '{{ path }}/check_icon'//定位
+            });
+        })
+
+    </script>
+{% endblock %}

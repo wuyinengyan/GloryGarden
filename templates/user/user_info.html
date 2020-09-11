@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block styles %}
+    <style>
+        .imgbos {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #0099CC;
+            border-radius: 5px;
+            padding: 3px;
+            text-align: center;
+            display: flex;
+            align-items: center
+        }
+
+        .imgbos img {
+            max-width: 200px;
+            max-height: 200px;
+            margin: auto
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 400px;overflow:auto;">
+        <from class="layui-form">
+            <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <input type="text" class="layui-hide" name="user_list_id" value="{{ user_list.0.user_id }}">
+            <div class="layui-form-item" id="role">
+                <label class="layui-form-label">角色 </label>
+                <div class="layui-input-block">
+                    <select name="role" lay-verify="required"
+                            {% if user_list.0.user_name == 'admin' %}disabled="disabled"{% endif %}>
+                        <option value="{{ user_list.0.role_id|safe }}">{{ user_list.0.role_name|safe }}</option>
+                        {% for i in role_list.data %}
+                            {% if i.role_id != user_list.0.role_id and user_list.0.user_name != 'admin' %}
+                                <option value="{{ i.role_id }}">{{ i.role_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名称 </label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_full_name" lay-verify="required|user_name" disabled="disabled"
+                           value="{{ user_list.0.user_full_name|safe }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号 </label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_name" lay-verify="required|user_name"
+                           value="{{ user_list.0.user_name|safe }}" disabled="disabled"
+                           class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_email" lay-verify="email" disabled="disabled"
+                           value="{{ user_list.0.user_email }}"
+                           class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="user_sex" value="1" title="男" disabled="disabled"
+                           checked="{% if user_list.0.user_sex == 1 %}checked{% endif %}">
+                    <input type="radio" name="user_sex" value="0" title="女" disabled="disabled"
+                           {% if user_list.0.user_sex == 0 %}checked{% endif %}>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">身份证 </label>
+                <div class="layui-input-block">
+                    <input id="user_card" type="text" name="user_card" lay-verify="required|identity"
+                           disabled="disabled"
+                           value="{{ user_list.0.user_card }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                    <input id="user_age" type="number" name="user_age" lay-verify="required" disabled="disabled"
+                           disabled="disabled"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话号码 </label>
+                <div class="layui-input-block">
+                    <input type="text" name="user_phone_number" lay-verify="required|phone"
+                           value="{{ user_list.0.user_phone_number }}"
+                           disabled="disabled"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有效 </label>
+                <div class="layui-input-block">
+                    <input type="radio" name="is_active" value="1" title="是" disabled="disabled"
+                           checked="{% if user_list.0.is_active == '1' %}checked{% endif %}">
+                    <input type="radio" name="is_active" value="0" title="否" disabled="disabled"
+                           {% if user_list.0.is_active == '0' %}checked{% endif %}>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-hide">
+                <label class="layui-form-label">创建人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="createby" lay-verify="required" placeholder="" value="{{ user_id }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide">
+                <label class="layui-form-label">更新人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="updateby" lay-verify="required" placeholder="" value="{{ user_id }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+
+                    <br><br>
+                    <div class="imgbos">
+                        <img {% if user_list.0.img_url %}src="media/{{ user_list.0.img_url|safe }}"{% endif %}
+                             id="preview" title="">
+                    </div>
+                </div>
+            </div>
+
+        </from>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+    <script>
+        layui.use(['layer', 'form', 'upload'], function (data) {
+            var layer = layui.layer;
+            var form = layui.form;
+            var upload = layui.upload;
+            var $ = layui.jquery;
+            form.render();//表单渲染
+        })
+        $(document).ready(function () {
+            //身份证获取年龄
+            var UUserCard = $("#user_card").val();
+            if (UUserCard != null && UUserCard !== '') {
+                var myDate = new Date();
+                var month = myDate.getMonth() + 1;
+                var day = myDate.getDate();
+
+                var age = myDate.getFullYear() - UUserCard.substring(6, 10) - 1;
+                if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) === month && UUserCard.substring(12, 14) <= day) {
+                    age++;
+                }
+                $("#user_age").val(age);
+            }
+        });
+
+
+    </script>
+{% endblock %}

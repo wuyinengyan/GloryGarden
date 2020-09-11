@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 475px;overflow:auto">
+        <from class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">父级菜单</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{{ menu_parent.name }}"
+                           class="layui-input" disabled style="background-color: #e7e7e7">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off" placeholder="{{ menu_my.name }}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单链接</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{{ menu_my.menu_url }}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单排序</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{{ menu_my.menu_order }}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单图标</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{{ menu_my.menu_icon }}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单类型</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{% if menu_my.menu_type == 'tree' %}树菜单{% elif menu_my.menu_type == 'leaf' %}叶菜单{% else %}无{% endif %}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有效</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{% if menu_my.is_active == 1 %}是{% else %}否{% endif %}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+
+
+
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

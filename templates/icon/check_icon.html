@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block styles %}
+    <style>
+        .layui-row {
+            margin-top: 10px;
+        }
+
+        .layui-row li {
+            float: left;
+            width: 110px;
+            height: 100px;
+            border: 1px solid #e2e2e2;
+            padding: 20px 0;
+            margin-right: -1px;
+            margin-bottom: -1px;
+        }
+
+        .layui-row li .layui-icon {
+            display: inline-block;
+            font-size: 36px;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="layui-card-body" style="padding-left: 20px">
+        <div carousel-item=""
+             style="text-align: center;top: 0px;height: 230px;overflow:auto;">
+            <ul id="select_browse_record"
+                class="layui-row layui-col-space10 layui-this " style="margin:auto;text-align: center"
+            >
+                {% for x in icon_list %}
+                    <li class="icon-li-bg" style="text-align: center" title="{{ x.dict_cont }}" value="0"><i
+                            class="layui-icon  layui-col-xs3_i {{ x.dict_cont }}"></i>
+                        <p>{{ x.dict_name }}</p>
+                        <p>{{ x.dict_cont }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        //数量悬停变色
+        $('.icon-li-bg').mousemove(function () {
+            $(this).css("background-color", "#e2e2e2");
+        });
+        //数量移出变色
+        $('.icon-li-bg').mouseout(function () {
+            var info = $(this).attr('value');
+            if (!info) {
+                $(this).css("background-color", "#fff")
+            }
+        });
+        //数量点击变色
+        $('.icon-li-bg').click(function () {
+            var info = $(this).attr('value'); //获取value属性值
+            if (info) { //判断是否是真
+                $(this).val('0') //置成假
+            } else {
+                $(this).val('1'); //置成真
+                $(this).css("background-color", "#e2e2e2"); //点击变色
+                for (var i = 0; i <= $('.icon-li-bg').length; i++) { //循环所有li
+                    if ($('.icon-li-bg').eq(i).attr('title') !== $(this).attr('title')) { //如果不是当前li
+                        $('.icon-li-bg').eq(i).val('0'); //全部置成假
+                        $('.icon-li-bg').eq(i).css("background-color", "#fff");//全部置成假
+                        $("#check_icon", window.parent.document).val($(this).attr('title'));//父页面传值
+
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

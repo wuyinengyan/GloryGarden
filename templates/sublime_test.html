@@ -1,0 +1,427 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+<!-- 页面引入css -->
+{% block styles %}
+
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block body %}
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        普通列表
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space10 layui-form" style="height: 70px">
+                            {% csrf_token %}{# 随机码 #}
+                            <div class="layui-col-md3">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">类名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="class_name" required lay-verify=""
+                                               placeholder="请输入类名称" value="" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-col-md3">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">菜单名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="menu_name" required lay-verify=""
+                                               placeholder="请输入菜单名称" value="" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md3">
+                                {#                                <div class="layui-form-item">#}
+                                {#                                    <label class="layui-form-label">数据库表名</label>#}
+                                {#                                    <div class="layui-input-block">#}
+                                {#                                        <input type="text" name="db_name" required lay-verify=""#}
+                                {#                                               placeholder="请输入表名" value="" class="layui-input">#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                            </div>
+                            <div class="layui-col-md3">
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                                        <button id="submitall" class="layui-btn" lay-submit lay-filter="*"
+                                                style="text-align: center">
+                                            <i class="layui-icon layui-icon-fonts-code"
+                                               style="font-size: 20px; color: #fff;"></i>
+                                            一键生成
+                                        </button>
+                                        <a id="file_download" class="layui-btn layui-btn-warm"
+                                           href="{{ path }}/file_download">导出html模版</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">
+                                    <i class="layui-icon layui-icon-component"
+                                       style="font-size: 30px; color: #e27f9a;"></i>model.py
+                                </li>
+                                <li>
+                                    <i class="layui-icon layui-icon-component"
+                                       style="font-size: 30px; color: #e27f9a;"></i>view.py
+
+                                </li>
+                                <li><i class="layui-icon layui-icon-component"
+                                       style="font-size: 30px; color: #e27f9a;"></i>urls.py
+                                </li>
+                                <li>
+                                    <span class="col_name">online</span>_list.html
+                                    <i class="layui-icon layui-icon-fonts-html"
+                                       style="font-size: 30px; color: #1E9FFF;"></i>
+                                </li>
+                                <li>
+                                    <span class="col_name">online</span>_info.html
+                                    <i class="layui-icon layui-icon-fonts-html"
+                                       style="font-size: 30px; color: #1E9FFF;"></i>
+                                </li>
+                                <li>
+                                    <span class="col_name">online</span>_edit.html
+                                    <i class="layui-icon layui-icon-fonts-html"
+                                       style="font-size: 30px; color: #1E9FFF;"></i>
+                                </li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <!--models.py-->
+                                <div class="layui-tab-item layui-show">
+
+                                    <div style="margin:0px 0px 0px 0px;height: 400px;overflow:auto;">
+                                        <pre>
+                                              <code class="python">
+
+        class <span class="class_name">Online</span>(models.Model):
+            <span class="col_name">online</span>_id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
+            name = models.CharField('名称', max_length=255)
+            is_active = models.IntegerField('是否使用', default=1)
+            class Meta:
+                db_table = 'sys_<span class="col_name">online</span>'
+
+            def get_id(self):
+                return self.<span class="col_name">online</span>_id
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <!--views.py-->
+                                <div class="layui-tab-item">
+                                    <div style="margin:0px 0px 0px 0px;height: 400px;overflow:auto;">
+                                    <pre>
+                                              <code class="python">
+                    # page类
+                    @csrf_protect
+                    def <span class="col_name">online</span>_page(request):
+                        user_id = request.session.get('user_id')
+                        iframe_id = request.GET.get('iframe_id')  # 模版菜单id
+                        if check_session(request):
+                            path = request.scheme + "://" + request.get_host()  # url
+                            ff_path = request.scheme + "://" + request.get_host() + request.path  # 加方法url
+                            <span class="col_name">online</span>_button_rights = {}
+                            <span class="col_name">online</span>_button_rights['role_create_rights'] = role_create_rights(user_id, iframe_id)
+                            <span class="col_name">online</span>_button_rights['role_delete_rights'] = role_delete_rights(user_id, iframe_id)
+                            <span class="col_name">online</span>_button_rights['role_update_rights'] = role_update_rights(user_id, iframe_id)
+                            <span class="col_name">online</span>_button_rights['role_select_rights'] = role_select_rights(user_id, iframe_id)
+                            return render(request, "<span class="col_name">online</span>/<span
+                                                      class="col_name">online</span>_list.html",
+                                          {'ff_path': ff_path, 'path': path, '<span class="col_name">online</span>_button_rights': <span
+                                                      class="col_name">online</span>_button_rights
+                                           })
+                        else:
+                            Online.objects.filter(user_id=user_id).delete()  # 删除当前用户上线记录
+                            response = HttpResponseRedirect('/login')
+                            return response
+
+                    # data类
+                    @csrf_protect
+                    def <span class="col_name">online</span>_data(request):
+                        user_id = request.session.get('user_id')
+                        if check_session(request):
+                            <span class="col_name">online</span>_list = {}
+                            <span class="col_name">online</span>_list['code'] = 0
+                            <span class="col_name">online</span>_list['msg'] = ''
+                            <span class="col_name">online</span>_list['count'] = 1000
+                            with connection.cursor() as cursor:
+                                cursor.execute(
+                                    "SELECT * FROM  sys_<span class="col_name">online</span> "
+                                )
+                                <span class="col_name">online</span>_list['data'] = dictfetchall(cursor)
+                            return JsonResponse(<span class="col_name">online</span>_list)
+                        else:
+                            Online.objects.filter(user_id=user_id).delete()  # 删除当前用户上线记录
+                            response = HttpResponseRedirect('/login')
+                            return response
+
+                     # info类
+                     @csrf_protect
+                     def <span class="col_name">online</span>_info(request):
+                        user_id = request.session.get('user_id')
+                        <span class="col_name">online</span>_list_id = request.GET.get('<span
+                                                      class="col_name">online</span>_list_id')
+                        if check_session(request):
+                            path = request.scheme + "://" + request.get_host()  # url
+                            ff_path = request.scheme + "://" + request.get_host() + request.path  # 加方法url
+                            <span class="col_name">online</span>_info = {}
+                            <span class="col_name">online</span>_info['info'] = <span class="class_name">Online</span>.objects.get(<span
+                                                      class="col_name">online</span>_id=<span
+                                                      class="col_name">online</span>_list_id)
+                            return render(request, "<span class="col_name">online</span>/<span
+                                                      class="col_name">online</span>_info.html",
+                                          {'ff_path': ff_path, 'path': path, '<span class="col_name">online</span>_info': <span
+                                                      class="col_name">online</span>_info['info']})
+                        else:
+                            Online.objects.filter(user_id=user_id).delete()  # 删除当前用户上线记录
+                            response = HttpResponseRedirect('/login')
+                            return response
+
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <!--urls.py-->
+                                <div class="layui-tab-item">
+                                    <div style="margin:0px 0px 0px 0px;height: 400px;overflow:auto;">
+                                        <pre>
+                                              <code class="python">
+            path('<span class="col_name">online</span>_page', views.<span class="col_name">online</span>_page), #页面
+            path('<span class="col_name">online</span>_data', views.<span class="col_name">online</span>_data), #数据
+            path('<span class="col_name">online</span>_info', views.<span class="col_name">online</span>_info), #查看
+            path('<span class="col_name">online</span>_add', views.<span class="col_name">online</span>_add), #新增
+            path('<span class="col_name">online</span>_edit', views.<span class="col_name">online</span>_edit), #编辑
+            path('<span class="col_name">online</span>_del', views.<span class="col_name">online</span>_del) #删除
+
+
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <div style="margin:0px 0px 0px 0px;height: 400px;overflow:auto;">
+                                        <pre>
+                                              <code class="js">
+&#123% extends 'base.html' %&#125
+&#123% load static from staticfiles %&#125
+
+&#123% block body %&#125
+    &lt!-- 内容主体区域 --&gt
+    &ltdiv class="layui-tab-item layui-show"&gt
+        &ltdiv class="layui-fluid"&gt
+            &ltdiv class="layui-col-md12" style="padding: 7.5px;"&gt
+                &ltdiv class="layui-card"&gt
+                    &ltdiv class="layui-card-header"&gt
+                        <span class="menu_name">在线管理</span>
+                    &lt/div&gt
+                    &ltdiv class="layui-card-body"&gt
+                        &lttable id="table" lay-filter="table"&gt&lt/table&gt
+                    &lt/div&gt
+
+                &lt/div&gt
+            &lt/div&gt
+        &lt/div&gt
+    &lt/div&gt
+&#123% endblock %&#125
+&#123% block scripts %&#125
+    &ltscript&gt
+        layui.use('table', function () &#123
+            var table = layui.table;      /*表格*/
+            /*table实例*/
+            table.render(&#123
+                elem: '#table'
+                , height: 400
+                , url: '&#123&#123 path &#125&#125/<span class="col_name">online</span>_data' /*数据接口*/
+                , page: true /*开启分页*/
+                , toolbar: '&ltdiv class="layui-table-tool-temp"&gt' +
+                                '&#123% if <span class="col_name">online</span>_button_rights.role_create_rights == 'false' %&#125&#123% else %&#125&ltdiv class="layui-inline" lay-event="add"&gt&lti class="layui-icon layui-icon-add-1"&gt&lt/i&gt&lt/div&gt&#123% endif %&#125' +
+                                '&lt/div&gt' /*默认操作行*/
+                , loading: true /*加载条*/
+                , cols: [[
+                    &#123checkbox: true, sort: true, fixed: 'left'&#125
+                    , &#123title: '序号', type: 'numbers', sort: true, fixed: 'left', width: 70,&#125
+                    , &#123field: '<span class="col_name">online</span>_id', title: 'id', width: 100, sort: true, fixed: 'left'&#125
+                    , &#123field: 'name', title: '名称', width: 400&#125
+                    , &#123
+                        fixed: 'right',
+                        title: '操作',
+                        width: 300,
+                        align: 'center',
+                        templet: function (d) &#123
+                            return '  &#123% if <span class="col_name">online</span>_button_rights.role_select_rights == 'true' %&#125&lta class="layui-btn layui-btn-xs" lay-event="info"&gt查看&lt/a&gt&#123% endif %&#125&#123% if <span
+                                                      class="col_name">online</span>_button_rights.role_update_rights == 'true' %&#125  &lta class="layui-btn layui-btn-xs" lay-event="edit"&gt编辑&lt/a&gt&#123% endif %&#125\n' +
+                                ' &#123% if <span class="col_name">online</span>_button_rights.role_delete_rights == 'true' %&#125 &lta class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"&gt删除&lt/a&gt&#123% endif %&#125'
+                        &#125
+                    &#125
+
+                ]]
+            &#125);
+            &#123#监听头部新增事件#&#125
+            table.on('tool(table)', function (obj) &#123
+                var data = obj.data; /*获得当前行数据*/
+                var layEvent = obj.event; /*获得 lay-event 对应的值*/
+                var tr = obj.tr; /*获得当前行 tr 的DOM对象*/
+                var title = ''  /*弹出框标题*/
+                var area = ''   /*弹出框大小*/
+                var btn = ''
+                if (layEvent === 'info') &#123
+                    title = '查看'
+                    area = ['400px', '520px']
+                &#125 else if (layEvent === 'edit') &#123
+                    title = '编辑'
+                    area = ['400px', '520px']
+                    btn = ['确认', '取消']
+                &#125 else if (layEvent === 'del') &#123
+                    title = '删除'
+                    area = ['350px', '220px']
+                    btn = ['确认', '取消']
+                &#125
+                //弹出框
+                layer.open(&#123
+                    btn: btn,
+                    btn1: function (index, layero) &#123
+
+                    &#125,
+                    btn2: function (index, layero) &#123
+                    &#125,
+                    title: title,
+                    id: "<span class="col_name">online</span>_list_operation",
+                    anim: 4, /*从左翻滚*/
+                    btnAlign: 'c', /*按钮居中*/
+                    type: 2, /*类型iframe*/
+                    resize: true,
+                    moveOut: true,
+
+                    scrollbar: true,
+                    shadeClose: true, /*点击遮罩关闭层*/
+                    area: area,
+                    content: '&#123&#123 path &#125&#125/<span class="col_name">online</span>_' + layEvent + '?<span
+                                                      class="col_name">online</span>_list_id=' + data.<span
+                                                      class="col_name">online</span>_id + ''
+                &#125);
+
+            &#125);
+        &#125)
+    &lt/script&gt
+&#123% endblock %&#125
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <!--ingo.html-->
+                                    <div style="margin:0px 0px 0px 0px;height: 400px;overflow:auto;">
+                                        <pre>
+                                             <code class="js">
+&#123% extends 'base.html' %&#125
+&#123% load static from staticfiles %&#125
+
+&#123% block body %&#125
+    &ltdiv style="margin:10px 20px 0px 10px;height: 475px;overflow:auto"&gt
+        &ltfrom class="layui-form"&gt
+
+            &ltdiv class="layui-form-item"&gt
+                &ltlabel class="layui-form-label"&gt名称&lt/label&gt
+                &ltdiv class="layui-input-block"&gt
+                    &ltinput type="text" lay-verify="" autocomplete="off" placeholder="&#123&#123 <span
+                                                     class="col_name">online</span>_info.name &#125&#125"
+                           class="layui-input" disabled&gt
+                &lt/div&gt
+            &lt/div&gt
+
+            &ltdiv class="layui-form-item"&gt
+                &ltlabel class="layui-form-label"&gt是否有效&lt/label&gt
+                &ltdiv class="layui-input-block"&gt
+                    &ltinput type="text" lay-verify="" autocomplete="off"
+                           placeholder="&#123% if <span class="col_name">online</span>.is_active == 1 %&#125是&#123% else %&#125否&#123% endif %&#125"
+                           class="layui-input" disabled&gt
+                &lt/div&gt
+            &lt/div&gt
+
+
+
+        &lt/from&gt
+    &lt/div&gt
+&#123% endblock %&#125
+&#123% block scripts %&#125
+
+&#123% endblock %&#125
+                                             </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item">内容6</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //将HTML转为普通文本，
+        var $code = document.getElementsByClassName("htmls");
+        for (var i = 0; i < $code.length; i++) {
+            var element = $code[i];
+            element.innerText = element.innerHTML;
+        }
+
+
+        layui.use('element', function () {
+            var form = layui.form;
+            var layer = layui.layer;
+            form.render();//渲染
+            //表单提交
+            form.on('submit(*)', function (data) {
+                var field = data.field
+                if (field.class_name && field.menu_name) {
+                    $(".class_name").text(UpperFirstLetter($.trim(field.class_name)))/*类名首字母大写*/
+                    $(".col_name").text($.trim(field.class_name)) /*字段*/
+                    $(".menu_name").text($.trim(field.menu_name)) /*菜单名称*/
+                    $("#file_download").attr("href", "{{ path }}/file_download?class_name=" + field.class_name + "&menu_name=" + field.menu_name + "").attr("class", "layui-btn layui-btn-normal") /*改变导出文件目录和样式*/
+                    /*渲染浏览记录*/
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path }}/file_generate",
+                        data: data.field,
+                        dataType: "json",
+                        success: function (data) {
+
+                            parent.layer.msg(data.info, {
+                                time: 3000, //3秒自动关闭
+                            })
+                        }, error: function (data) {
+
+                        }
+                    });
+                } else {
+                    parent.layer.msg('请输入参数', {
+                        time: 3000, //3秒自动关闭
+                    })
+                }
+
+            });
+        })
+
+        /* 首字母大写*/
+        function UpperFirstLetter(str) {
+            return str.replace(/\b\w+\b/g, function (word) {
+                return word.substring(0, 1).toUpperCase() + word.substring(1);
+            });
+        };
+
+
+    </script>
+{% endblock %}
+

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:20px 20px 0px 0px; overflow:auto;">
+        <from class="layui-form">
+            <input type="text" class="layui-hide" id="goods_id" name="goods_id" value="">
+            {% csrf_token %}{# 随机码 #}
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" id="num1" name="num" readonly value="1" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 120px">
+                        <select id="type1" name="type1"  lay-filter="type1">
+                            <option value="-1">请选择</option>
+                            <option value="material">材料</option>
+                            <option value="goods">物品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <select id="value1" name="value1" lay-search>
+                            {% for item in value1_list %}
+                            <option value="{{item.id}}">{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 40px">
+                        <input type="text" id="amount1" name="amount1"  value="" lay-verify="PosIntOrNull" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" id="num2" name="num" readonly value="2" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 120px">
+                        <select id="type2" name="type2"  lay-filter="type2">
+                            <option value="-1">请选择</option>
+                            <option value="material">材料</option>
+                            <option value="goods">物品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <select id="value2" name="value2" lay-search>
+                            {% for item in value2_list %}
+                            <option value="{{item.id}}">{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 40px">
+                        <input type="text" id="amount2" name="amount2"  value="" lay-verify="PosIntOrNull" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" id="num3" name="num" readonly value="3" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 120px">
+                        <select id="type3" name="type3"  lay-filter="type3">
+                            <option value="-1">请选择</option>
+                            <option value="material">材料</option>
+                            <option value="goods">物品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <select id="value3" name="value3" lay-search>
+                            {% for item in value3_list %}
+                            <option value="{{item.id}}">{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 40px">
+                        <input type="text" id="amount3" name="amount3"  value="" lay-verify="PosIntOrNull" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" id="num4" name="num" readonly value="4" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 120px">
+                        <select id="type4" name="type4" lay-filter="type4">
+                            <option value="-1">请选择</option>
+                            <option value="material">材料</option>
+                            <option value="goods">物品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <select id="value4" name="value4" lay-search>
+                            {% for item in value4_list %}
+                            <option value="{{item.id}}">{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 40px">
+                        <input type="text" id="amount4" name="amount4"  value="" lay-verify="PosIntOrNull" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" id="num5" name="num" readonly value="5" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 120px">
+                        <select id="type5" name="type5" lay-filter="type5">
+                            <option value="-1">请选择</option>
+                            <option value="material">材料</option>
+                            <option value="goods">物品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px;">
+                        <select id="value5" name="value5" lay-search>
+                            {% for item in value5_list %}
+                            <option value="{{item.id}}">{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-block" style="margin-left: 10px; width: 40px">
+                        <input type="text" id="amount5" name="amount5"  value="" lay-verify="PosIntOrNull" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-hide">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit onclick="" id="save" lay-filter="save">保存</button>
+                </div>
+            </div>
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {#^LHJNote 2020年9月9日12:10:11$#}
+    {#style在script前面，影响加载效果#}
+    <style>
+        .layui-form-item .layui-inline input[name="num"]{
+            width: 30px;
+            margin-left: 20px;
+        }
+        .num_background{
+            background: greenyellow;
+        }
+    </style>
+    <script>
+        const table_id = 'gjol_goods_table';
+
+        layui.use(['layer', 'table', 'form', 'upload'], function (data) {
+            let layer = layui.layer, table = layui.table, form = layui.form, upload = layui.upload;
+
+            load_component_list();  // 加载配方成分
+
+            form.render();
+            form.on('submit(save)', function (data) {
+                data.field.text1 = $("#value1 option:selected").text();
+                data.field.text2 = $("#value2 option:selected").text();
+                data.field.text3 = $("#value3 option:selected").text();
+                data.field.text4 = $("#value4 option:selected").text();
+                data.field.text5 = $("#value5 option:selected").text();
+                console.log(data);
+                form_on_submit_ajax('{{path}}', table_id, data);
+            });
+
+            // 选择类型
+            form.on('select(type1)', function (data){
+                get_value_by_type(data.value, "value1");
+            });
+            form.on('select(type2)', function (data){
+                get_value_by_type(data.value, "value2");
+            });
+            form.on('select(type3)', function (data){
+                get_value_by_type(data.value, "value3");
+            });
+            form.on('select(type4)', function (data){
+                get_value_by_type(data.value, "value4");
+            });
+            form.on('select(type5)', function (data){
+                get_value_by_type(data.value, "value5");
+            });
+
+            // ^LHJNote 2020年9月9日11:16:39$
+            // 数量输入正则验证
+            form.verify({
+                PosIntOrNull:[
+                    /(^\+?[1-9]\d*$)|(^$)/
+                    , '必须输入正整数！'
+                ]
+            });
+        });
+
+        // 根据字类型获取下拉列表
+        function get_value_by_type(val, select_name){
+            $.ajax({
+                type: "GET",
+                url: "gjol_goods_recipe",
+                data: "type=" + val,
+                success: function (res) {
+                    if(res.status){
+                        $("#" + select_name).empty();
+                        if(res.data){
+                            $.each(res.data, function (index, item) {
+                                $("#" + select_name).append(new Option(item.name, item.id));
+                            })
+                        }
+                        layui.form.render("select");  // 重现渲染 固定写法
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+        };
+
+        // 加载配方成分
+        function load_component_list(){
+            let component_count = "{{ component_count }}";
+
+            // 行1
+            if(component_count>=1) {
+                $("#type1").val("{{ component_list.0.component_type }}");
+                $("#value1").val(get_new_component_id("{{ component_list.0.component_id }}"));
+                $("#amount1").val("{{ component_list.0.amount }}");
+                $("#num1").addClass("num_background");
+                $("#amount1").addClass("num_background");
+            }
+            // 行2
+            if(component_count>=2){
+                $("#type2").val("{{ component_list.1.component_type }}");
+                $("#value2").val(get_new_component_id("{{ component_list.1.component_id }}"));
+                $("#amount2").val("{{ component_list.1.amount }}");
+                $("#num2").addClass("num_background");
+                $("#amount2").addClass("num_background");
+            }
+            // 行3
+            if(component_count>=3){
+                $("#type3").val("{{ component_list.2.component_type }}");
+                $("#value3").val(get_new_component_id("{{ component_list.2.component_id }}"));
+                $("#amount3").val("{{ component_list.2.amount }}");
+                $("#num3").addClass("num_background");
+                $("#amount3").addClass("num_background");
+            }
+            // 行4
+            if(component_count>=4){
+                $("#type4").val("{{ component_list.3.component_type }}");
+                $("#value4").val(get_new_component_id("{{ component_list.3.component_id }}"));
+                $("#amount4").val("{{ component_list.3.amount }}");
+                $("#num4").addClass("num_background");
+                $("#amount4").addClass("num_background");
+            }
+            // 行5
+            if(component_count>=5){
+                $("#type5").val("{{ component_list.4.component_type }}");
+                $("#value5").val(get_new_component_id("{{ component_list.4.component_id }}"));
+                $("#amount5").val("{{ component_list.4.amount }}");
+                $("#num5").addClass("num_background");
+                $("#amount5").addClass("num_background");
+            }
+        }
+
+        // 用'-'重新拼接UUID
+        function get_new_component_id(component_id){
+           return component_id.slice(0, 8) + '-' + component_id.slice(8, 12) + '-'
+                + component_id.slice(12, 16) + '-' + component_id.slice(16, 20) + '-' + component_id.slice(20);
+        }
+    </script>
+{% endblock %}

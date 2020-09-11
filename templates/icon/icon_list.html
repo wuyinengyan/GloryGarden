@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block styles %}
+    <style>
+        .layui-row {
+            margin-top: 10px;
+        }
+
+        .layui-row li {
+            float: left;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #e2e2e2;
+            padding: 20px 0;
+            margin-right: -1px;
+            margin-bottom: -1px;
+        }
+
+        .layui-row li .layui-icon {
+            display: inline-block;
+            font-size: 36px;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        icon-图表库
+                    </div>
+                    <div class="layui-card-body" style="padding-left: 20px">
+                        <div carousel-item=""
+                             style="text-align: center;top: 0px;height: 550px;overflow:auto;">
+                            <ul id="select_browse_record"
+                                class="layui-row layui-col-space10 layui-this "
+                            >
+                                {% for x in icon_list %}
+                                    <li class="icon-li-bg" style="text-align: center"><i
+                                            class="layui-icon  layui-col-xs3_i {{ x.dict_cont }}"></i>
+                                        <p>{{ x.dict_name }}</p>
+                                        <p>{{ x.dict_cont }}</p>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('.icon-li-bg').mousemove(function () {
+            $(this).css("background-color", "#e2e2e2");
+        });
+        $('.icon-li-bg').mouseout(function () {
+            $(this).css("background-color", "#fff");
+        });
+    </script>
+{% endblock %}

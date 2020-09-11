@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+<!-- 页面引入css -->
+{% block styles %}
+
+
+{% endblock %}
+
+<!-- 内容 -->
+{% block body %}
+    <div id="test-all" class="layui-inline">
+        <div class="layui-unselect layui-colorpicker">
+                <span class="layui-colorpicker-trigger-bgcolor">
+                    <span class="layui-colorpicker-trigger-span" lay-type="rgba"
+                          style="background: rgba(7, 155, 140, 1)">
+                        <i class="layui-icon layui-colorpicker-trigger-i layui-icon-down">
+                        </i>
+                    </span>
+                </span>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+<!-- script -->
+{% block scripts %}
+    <script>
+        layui.use('colorpicker', function () {
+            var colorpicker = layui.colorpicker;
+            //开启全功能
+            colorpicker.render({
+                elem: '#test-all'
+                , color: 'rgba(7, 155, 140, 1)'
+                , format: 'rgb'
+                , predefine: true
+                , alpha: true
+                , done: function (color) {
+                    $('#test-all-input').val(color); //向隐藏域赋值
+                    layer.tips('给指定隐藏域设置了颜色值：' + color, this.elem);
+                    color || this.change(color); //清空时执行 change
+                }
+                , change: function (color) {
+                    //给当前页面头部和左侧设置主题色
+                    $('.header-demo,.layui-side .layui-nav').css('background-color', color);
+                }
+            });
+
+        })
+
+    </script>
+{% endblock %}

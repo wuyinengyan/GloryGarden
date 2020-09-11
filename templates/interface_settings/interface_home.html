@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 475px;overflow:auto;">
+        <form class="layui-form">
+            <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+
+            {% csrf_token %}{# 随机码 #}
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">平台标题 <span style="color:red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="required|name" autocomplete="off" placeholder=""
+                           name="name"
+                           value="{{ menu_my.name }}"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">配色</label>
+                <div class="layui-input-block">
+                    <div class="layui-carousel" id="test1" style="border: #1E9FFF 3px solid;border-radius:5px">
+                        <div carousel-item>
+                            <div><img src="media/interface_img/green.jpg"
+                                      id="green" title="green" width="1100" height="400"></div>
+                            <div>条目2</div>
+                            <div>条目3</div>
+                            <div>条目4</div>
+                            <div>条目5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {#隐藏的#}
+            <div class="layui-form-item" style="display:none">
+                <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                    <button id="commit" class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+
+
+
+
+
+
+    <script>
+        layui.use('element', function () {
+            var form = layui.form;
+            var layer = layui.layer;
+            var carousel = layui.carousel;
+
+            form.render();//渲染
+            carousel.render({
+                elem: '#test1'
+                , width: '30%' //设置容器宽度
+                , arrow: 'always' //始终显示箭头
+                //,anim: 'updown' //切换动画方式
+                , autoplay: false
+            });
+
+            carousel.on('change(test1)', function (obj) { //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+                console.log(obj.index); //当前条目的索引
+                console.log(obj.prevIndex); //上一个条目的索引
+                console.log(obj.item); //当前条目的元素对象
+            });
+
+            {#表单验证#}
+            form.verify({
+                name: function (value, item) { //value：表单的值、item：表单的DOM对象
+                    if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                        return '用户名不能有特殊字符';
+                    }
+                    if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                        return '用户名首尾不能出现下划线\'_\'';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '用户名不能全为数字';
+                    }
+                    if (value.length < 3 && value.length > 20) {
+                        return '请输入3-20位的菜单名称';
+                    }
+                }
+
+            });
+            //表单提交
+            form.on('submit(*)', function (data) {
+                var $ = layui.jquery;
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path }}/{{ action }}",
+                    data: data.field,
+                    dataType: "json",
+                    success: function (data) {
+                        parent.document.getElementById('menu_list_left_tree').contentWindow.location.reload()
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.layui.table.reload('menu_list');
+                        layer.msg('新增菜单成功', {
+                            time: 3000, //3秒自动关闭
+                            end: function () {
+                                parent.layui.table.reload('menu_list');
+                            }
+                        })
+                    }, error: function (data) {
+
+                    }
+                });
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+            });
+        });
+
+
+    </script>
+{% endblock %}

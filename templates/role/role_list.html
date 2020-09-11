@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <!-- 内容主体区域 -->
+    <div class="layui-tab-item layui-show">
+        <div class="layui-fluid">
+            <div class="layui-col-md12" style="padding: 7.5px;">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        角色（基础权限）
+                    </div>
+                    <div class="layui-card-body">
+                        <table id="table" lay-filter="table"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        layui.use('table', function () {
+            var $ = layui.jquery, layer = layui.layer;
+
+            var element = layui.element;
+            var table = layui.table;      //表格
+            //table实例
+            table.render({
+                elem: '#table'
+                , id: 'role_list'
+                , height: 500
+                , url: '{{ path }}/role_data' //数据接口
+                , page: true //开启分页
+                , toolbar: 'default' //默认操作行
+                , loading: true //加载条
+                , cols: [[
+                    {checkbox: true, sort: true, fixed: 'left'}
+                    , {title: '序号', type: 'numbers', sort: true, fixed: 'left', width: 70,}
+                    , {field: 'role_id', title: '角色id', width: 100, sort: true, fixed: 'left'}
+                    , {field: 'role_name', title: '角色名称', width: 400}
+                    , {field: 'role_order', title: '角色序号', width: 200}
+                    , {
+                        field: 'is_active', title: '角色状态', width: 200, templet: function (d) {
+                            if (d.is_active === 1) {
+                                return '启用'
+                            } else {
+                                return '禁用'
+                            }
+                        }
+                    }
+                    , {
+                        fixed: 'right',
+                        title: '操作',
+                        width: 300,
+                        align: 'center',
+                        templet: function (d) {
+                            return '  <a class="layui-btn layui-btn-xs" lay-event="role_create_rights">增</a><a class="layui-btn layui-btn-xs" lay-event="role_delete_rights">删</a><a class="layui-btn layui-btn-xs" lay-event="role_update_rights">改</a><a class="layui-btn layui-btn-xs" lay-event="role_select_rights">查</a>  <a class="layui-btn layui-btn-xs" lay-event="role_menu_rights">菜单</a>\n' +
+                                '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
+                        }
+                    }
+
+                ]]
+            });
+            {#监听操作栏按钮#}
+            table.on('tool(table)', function (obj) {
+                    var data = obj.data; //获得当前行数据
+                    var layEvent = obj.event; //获得 lay-event 对应的值
+                    var tr = obj.tr; //获得当前行 tr 的DOM对象
+                    var title = ''//弹出框标题
+                    if (layEvent === 'role_create_rights') {
+                        title = '角色菜单添加按钮权限'
+                    } else if (layEvent === 'role_delete_rights') {
+                        title = '角色菜单删除按钮权限'
+                    } else if (layEvent === 'role_update_rights') {
+                        title = '角色菜单编辑按钮权限'
+                    } else if (layEvent === 'role_select_rights') {
+                        title = '角色菜单查看按钮权限'
+                    } else if (layEvent === 'role_menu_rights') {
+                        title = '角色菜可查看权限'
+                    }
+                    //弹出框
+                    layer.open({
+                        btn: ['确认', '取消'],
+                        btn1: function (index, layero) {
+                            $('#menu_tree iframe')[0].contentWindow.save(); //使用树ifrname的sava方法
+                            layer.close(index)//关闭当前窗口
+                            layer.msg('修改成功', {
+                                time: 1000, //1秒自动关闭
+                                end: function () {
+                                    table.reload('role_list') //刷新表格
+                                }
+                            })
+                        },
+                        btn2: function (index, layero) {
+                            //按钮【按钮三】的回调
+                            console.log(data.role_id)
+                        },
+                        title: title,
+                        id: "menu_tree",
+                        anim: 4, //从左翻滚
+                        btnAlign: 'c', //按钮居中
+                        type: 2, //类型iframe
+                        resize: true,
+                        moveOut: true,
+                        maxmin: true,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['350px', '520px'],
+                        content: '{{ path }}/role_menu_manage?role_id=' + data.role_id + '&layEvent=' + layEvent + ''
+                    });
+
+
+                }
+            );
+        })
+
+    </script>
+{% endblock %}

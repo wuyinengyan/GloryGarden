@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block body %}
+    <div style="margin:10px 20px 0px 10px;height: 475px;overflow:auto">
+        <from class="layui-form">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off" placeholder="{{ generate_info.name }}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有效</label>
+                <div class="layui-input-block">
+                    <input type="text" lay-verify="" autocomplete="off"
+                           placeholder="{% if generate_info.is_active == 1 %}是{% else %}否{% endif %}"
+                           class="layui-input" disabled>
+                </div>
+            </div>
+
+
+
+        </from>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

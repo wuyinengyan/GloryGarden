@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!-- 内容主体区域 -->
+    <div class="layui-tab-item layui-show">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-row layui-col-space10 layui-form">
+                    <div class="layui-col-md3">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">简称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="short_name" required lay-verify=""
+                                       placeholder="请输入简称" value="" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md3">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0px;text-align: center;">
+                                <button type="button" id="submitall" class="layui-btn" lay-submit lay-filter="search">
+                                    <i class="layui-icon layui-icon-search" style="font-size: 20px; color: #fff;"></i> 查询
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="table" lay-filter="table"></table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const table_prefix = 'gjol_version_';
+        const area = ['360px', '360px'];
+
+        layui.use(['table', 'form', 'layer'], function () {
+            let table = layui.table, form = layui.form, layer=layui.layer;
+            let table_cols = [[
+                {type: "numbers"},
+                {#{title: '序号', type: 'numbers', width: 60},#}
+                {#{checkbox: true, sort: true, fixed: 'center'},#}
+                {field: 'id', title: 'ID', hide: true},
+                {field: 'short_name', title: '简称', width: 160, align:'center', templet: function (data) {
+                        return '<div style="text-align:left">' + data.short_name + '</div>';
+                    }},
+                {field: 'start_date', title: '开始日期', sort: true, width: 120, align:'center'},
+                {field: 'end_date', title: '结束日期', width: 120, align:'center'},
+                {field: 'remark', title: '备注', width: 400, align:'center', templet: function (data) {
+                        return '<div style="text-align:left">' + data.remark + '</div>';
+                    }},
+                {field: 'is_del', title: '操作', width: 100, align: 'center', fixed: 'right', templet: function (data) {
+                        return '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>';
+                    }}
+            ]];
+            let table_toolbar = '<div class="layui-table-tool-temp"><div class="layui-inline" lay-event="add" title="新增"><i class="layui-icon layui-icon-add-1"></i></div></div>';
+
+
+            // 表格加载
+            layui_table_render(table_prefix, table_cols, table_toolbar);
+
+            // 查询
+            form.on("submit(search)", function(data){
+                table.reload(table_prefix + "table", {
+                    where: data.field,
+                    page: {curr: 1},
+                    // url: "{url('/gjol_version_data')}"
+                });
+            })
+
+            // 监听头部新增事件
+            table.on('toolbar(table)', function (obj) {
+                // layer.msg(obj.event, {time: 1300});
+                // console.log(obj.event);
+                layer_open_common_event(obj, table_prefix, area);
+            });
+
+            // 监听操作栏按钮
+            table.on('tool(table)', function (obj) {
+                layer_open_common_event(obj, table_prefix, area);
+            });
+        })
+    </script>
+{% endblock %}
