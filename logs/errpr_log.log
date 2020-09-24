@@ -6629,3 +6629,220 @@ Traceback (most recent call last):
     cursor.callproc('proc_set_gjol_goods_price', (goods.id.replace('-', ''),))  # 注意参数应该是一个元组
 AttributeError: 'UUID' object has no attribute 'replace'
 ERROR 2020-09-10 18:27:14,974 basehttp 157 "POST /gjol_goods_add HTTP/1.1" 500 84360
+ERROR 2020-09-21 11:38:29,018 log 230 Internal Server Error: /gjol_material_add
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1503, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 83, in wrapper
+    return info(request, *args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\views\decorators\clickjacking.py", line 50, in wrapped_view
+    resp = view_func(*args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\gujianonline\views\v_material.py", line 98, in gjol_material_add
+    material.save()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 751, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 789, in save_base
+    force_update, using, update_fields,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 892, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 932, in _do_insert
+    using=using, raw=raw,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\query.py", line 1249, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1394, in execute_sql
+    for sql, params in self.as_sql():
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in as_sql
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in <listcomp>
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1338, in <listcomp>
+    [self.prepare_value(field, self.pre_save_val(field, obj)) for field in fields]
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1279, in prepare_value
+    value = field.get_db_prep_save(value, connection=self.connection)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1512, in get_db_prep_save
+    return connection.ops.adapt_decimalfield_value(self.to_python(value), self.max_digits, self.decimal_places)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1508, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['“”的值应该是一个十进制数字。']
+ERROR 2020-09-21 11:38:29,054 basehttp 157 "POST /gjol_material_add HTTP/1.1" 500 154170
+ERROR 2020-09-21 11:41:02,972 log 230 Internal Server Error: /gjol_material_add
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1503, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 83, in wrapper
+    return info(request, *args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\views\decorators\clickjacking.py", line 50, in wrapped_view
+    resp = view_func(*args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\gujianonline\views\v_material.py", line 98, in gjol_material_add
+    material.save()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 751, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 789, in save_base
+    force_update, using, update_fields,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 892, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 932, in _do_insert
+    using=using, raw=raw,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\query.py", line 1249, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1394, in execute_sql
+    for sql, params in self.as_sql():
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in as_sql
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in <listcomp>
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1338, in <listcomp>
+    [self.prepare_value(field, self.pre_save_val(field, obj)) for field in fields]
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1279, in prepare_value
+    value = field.get_db_prep_save(value, connection=self.connection)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1512, in get_db_prep_save
+    return connection.ops.adapt_decimalfield_value(self.to_python(value), self.max_digits, self.decimal_places)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1508, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['“”的值应该是一个十进制数字。']
+ERROR 2020-09-21 11:41:02,977 basehttp 157 "POST /gjol_material_add HTTP/1.1" 500 154170
+ERROR 2020-09-21 12:08:29,511 log 230 Internal Server Error: /gjol_goods_add
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1503, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 83, in wrapper
+    return info(request, *args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\views\decorators\clickjacking.py", line 50, in wrapped_view
+    resp = view_func(*args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\gujianonline\views\v_goods.py", line 77, in gjol_goods_add
+    goods.save()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 751, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 789, in save_base
+    force_update, using, update_fields,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 892, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\base.py", line 932, in _do_insert
+    using=using, raw=raw,
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\query.py", line 1249, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1394, in execute_sql
+    for sql, params in self.as_sql():
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in as_sql
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1339, in <listcomp>
+    for obj in self.query.objs
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1338, in <listcomp>
+    [self.prepare_value(field, self.pre_save_val(field, obj)) for field in fields]
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\compiler.py", line 1279, in prepare_value
+    value = field.get_db_prep_save(value, connection=self.connection)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1512, in get_db_prep_save
+    return connection.ops.adapt_decimalfield_value(self.to_python(value), self.max_digits, self.decimal_places)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\fields\__init__.py", line 1508, in to_python
+    params={'value': value},
+django.core.exceptions.ValidationError: ['“”的值应该是一个十进制数字。']
+ERROR 2020-09-21 12:08:29,514 basehttp 157 "POST /gjol_goods_add HTTP/1.1" 500 150765
+ERROR 2020-09-21 20:27:46,968 log 230 Internal Server Error: /gjol_material_edit
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 83, in wrapper
+    return info(request, *args, **kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\views\decorators\clickjacking.py", line 50, in wrapped_view
+    resp = view_func(*args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\gujianonline\views\v_material.py", line 111, in gjol_material_edit
+    version_list = list(GJOL_Version.objects.filter(is_del=0).values("id", "short_name").order_by("-create_date"))
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\query.py", line 1134, in order_by
+    obj.query.add_ordering(*field_names)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\query.py", line 1919, in add_ordering
+    self.names_to_path(item.split(LOOKUP_SEP), self.model._meta)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\db\models\sql\query.py", line 1482, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'create_date' into field. Choices are: create_by, create_time, end_date, gjol_goods, gjol_material, id, is_del, remark, short_name, start_date, update_by, update_time
+ERROR 2020-09-21 20:27:46,996 basehttp 157 "GET /gjol_material_edit?id=3756a21e-2f36-49a5-a3a2-36b44e14c2bc HTTP/1.1" 500 97736
+ERROR 2020-09-21 22:44:31,993 log 230 Internal Server Error: /gjol_material_list
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 82, in wrapper
+    print('User:%s , Start %s(%s, %s)' % (user_id, info.__name__, args, kwargs))
+OSError: [Errno 22] Invalid argument
+ERROR 2020-09-21 22:44:31,995 basehttp 157 "GET /gjol_material_list?page=1&limit=10&priority=3&name=&version_id=&role_id=&type_id=&import_file= HTTP/1.1" 500 73605
+ERROR 2020-09-21 22:46:14,848 log 230 Internal Server Error: /index
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 82, in wrapper
+    print('User:%s , Start %s(%s, %s)' % (user_id, info.__name__, args, kwargs))
+OSError: [Errno 22] Invalid argument
+ERROR 2020-09-21 22:46:14,849 basehttp 157 "GET /index HTTP/1.1" 500 71859
+ERROR 2020-09-21 22:46:22,477 log 230 Internal Server Error: /verify_account
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 54, in verify_account
+    print(username, password)
+OSError: [Errno 22] Invalid argument
+ERROR 2020-09-21 22:46:22,479 basehttp 157 "POST /verify_account HTTP/1.1" 500 71893
+ERROR 2020-09-21 22:46:22,733 log 230 Internal Server Error: /login
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "E:\PycharmProjects\GloryGarden\loginmanage\views.py", line 22, in login
+    print(username, password)
+OSError: [Errno 22] Invalid argument
+ERROR 2020-09-21 22:46:22,737 basehttp 157 "POST /login HTTP/1.1" 500 72796
