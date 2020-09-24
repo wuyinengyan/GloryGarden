@@ -112,7 +112,17 @@
             $("#remark").val("{{ role_list.0.remark }}");
 
             form.render();
-            form_on_submit('{{path}}', table_id);
+            layui.form.on('submit(save)', function (data) {
+                let price = data.field.price;
+                if(price.length === 0){
+                    data.field.price = 0.00;
+                }
+                let sort = data.field.sort;
+                if(sort.length === 0){
+                    data.field.sort = 99;
+                }
+                form_on_submit_ajax('{{path}}', table_id, data);
+            });
         });
     </script>
 {% endblock %}

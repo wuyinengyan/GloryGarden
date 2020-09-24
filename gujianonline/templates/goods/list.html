@@ -58,16 +58,16 @@
             let table_cols = [[
                 {type: "numbers"},
                 {field: 'id', title: 'ID', hide: true},
-                {field: 'name', title: '名称', width: 120, align:'center', templet: function (data) {
+                {field: 'name', title: '名称', width: 200, align:'center', templet: function (data) {
                         return '<div style="text-align:left;">' + data.name + '</div>';
                     }},
-                {field: 'price', title: '价格', sort: true, width: 120, align: 'center', templet: function (data) {
+                {field: 'price', title: '价格', sort: true, width: 80, align: 'center', templet: function (data) {
                         return '<div style="text-align:right">' + data.price + '</div>';
                     }},
-                {field: 'recipe_components', title: '配方成分', width: 400, align:'center', templet: function (data) {
+                {field: 'recipe_components', title: '配方成分', width: 500, align:'center', templet: function (data) {
                         return '<div style="text-align:left;">' + data.recipe_components + '</div>';
                     }},
-                {field: 'type_name', title: '类型', width: 100, align: 'center'},
+                {field: 'type_name', title: '类型', width: 100, align: 'center', hide: true},
                 {field: 'version_name', title: '版本', width: 120, align:'center', hide: true, templet: function (data) {
                         return '<div style="text-align:left;">' + data.version_name + '</div>';
                     }},

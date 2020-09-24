@@ -60,7 +60,7 @@ class GJOL_Material(models.Model):
 class GJOL_Material_Type(models.Model):
     id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=40, null=False, verbose_name="名称")
-    sort = models.SmallIntegerField("排序", max_length=2, default=0)
+    sort = models.SmallIntegerField("排序", default=0)
     remark = models.CharField(max_length=500, verbose_name="备注")
     create_by = models.CharField("创建者", max_length=32, null=False)
     create_time = models.DateTimeField("创建时间", default=timezone.now, null=False)
@@ -79,7 +79,7 @@ class GJOL_Material_Type(models.Model):
 class GJOL_Goods(models.Model):
     id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
     name = models.CharField("名称", max_length=40, null=False)
-    sort = models.SmallIntegerField("排序", max_length=5, default=99)
+    sort = models.SmallIntegerField("排序", default=99)
     fee = models.DecimalField("加工费", max_digits=10, decimal_places=2, default=0.00)
     price = models.DecimalField("价格", max_digits=10, decimal_places=2, default=0.00)
     description = models.CharField("描述", max_length=500)
@@ -104,7 +104,7 @@ class GJOL_Goods(models.Model):
 class GJOL_Goods_Type(models.Model):
     id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
     name = models.CharField("名称", max_length=40, null=False)
-    sort = models.SmallIntegerField("排序", max_length=2, default=0)
+    sort = models.SmallIntegerField("排序", default=0)
     remark = models.CharField("备注", max_length=500)
     create_by = models.CharField("创建者", max_length=32, null=False)
     create_time = models.DateTimeField("创建时间", default=timezone.now, null=False)
@@ -158,7 +158,7 @@ class GJOL_Version(models.Model):
 
     class Meta:
         db_table = "gjol_version"
-        ordering = ["start_date", "create_time"]
+        ordering = ["-start_date", "create_time"]
 
         verbose_name = "版本信息表"
 
@@ -169,7 +169,7 @@ class GJOL_Role(models.Model):
     name = models.CharField("名称", max_length=40, null=False)
     profession = models.CharField("职业", max_length=20, null=False)
     create_date = models.DateField("创建日期")
-    sort = models.SmallIntegerField("排序", max_length=2, default=99)
+    sort = models.SmallIntegerField("排序", default=99)
     server_info = models.CharField("区服信息", max_length=100)
     account_info = models.CharField("账号信息", max_length=100)
     remark = models.CharField("备注", max_length=500)

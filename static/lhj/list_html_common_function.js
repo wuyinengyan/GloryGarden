@@ -7,6 +7,8 @@ function layui_table_render(table_prefix, table_cols, table_toolbar, table_heigh
         height: table_height,
         cellMinWidth: 60,
         page: true,  // 开启分页
+        limit: 20,
+        limits: [10, 20, 50],
         loading: true,  // 加载条
         text: {none: '查无数据！'},
         defaultToolbar: ['filter', 'print', 'exports'],  // 默认操作行，只有三个

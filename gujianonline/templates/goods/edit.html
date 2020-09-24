@@ -80,7 +80,17 @@
             $("#description").val("{{ goods_info.0.description }}");
 
             form.render();
-            form_on_submit('{{path}}', table_id);
+            layui.form.on('submit(save)', function (data) {
+                let fee = data.field.fee;
+                if(fee.length === 0){
+                    data.field.fee = 0.00;
+                }
+                let sort = data.field.sort;
+                if(sort.length === 0){
+                    data.field.sort = 99;
+                }
+                form_on_submit_ajax('{{path}}', table_id, data);
+            });
         });
     </script>
 {% endblock %}
